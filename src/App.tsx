@@ -1,14 +1,14 @@
-import './App.css';
-import Navbar from './components/navbar/Navbar';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import Navbar from './components/navbar';
+import Main from './components/pages';
+
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Navbar/>
-      <p>test</p>
-      
-      
-    </div>
+      <Main/>
+    </Router>
   );
 }
 
