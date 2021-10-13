@@ -1,5 +1,6 @@
-import { Fragment, useRef } from "react";
+import { Fragment, useRef, useState } from "react";
 import styled from "styled-components";
+import UserItems from "../userItems/UserItems";
 
 const StyledDiv = styled.div`
   background-color: red;
@@ -25,29 +26,55 @@ const Styledh1 = styled.h1`
   font-size: 3rem;
 `;
 
-const StyledInputDiv = styled.div`
-  background-color: blue;
+const StyledTodoDiv = styled.div`
+  background-color: #d4f1f4;
 `;
 
 const Main = () => {
   const inputRef = useRef();
+  const [userInputData, setUserInputData] = useState([{}]);
+  const [input, setInput] = useState("");
 
   const addBtnHandler = () => {
+    //check data in input field
+    const inputData = inputRef.current.value;
 
-    //send data
+    if (!inputData || !userInputData) {
+      return;
+    }
+
+    //set
+    setUserInputData((prevState) => {
+      return [
+        ...prevState,
+        { key: Math.random().toString(), userData: inputData },
+      ];
+    });
 
     //clear input field
-    
+    setInput("");
   };
+
+  const removeItemHandler = id => {
+      console.log(id);
+
+  }
 
   return (
     <Fragment>
       <StyledDiv>
-        <StyledInput type="text" ref={inputRef}></StyledInput>
+        <StyledInput
+          type="text"
+          ref={inputRef}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        ></StyledInput>
         <StyledInputButton onClick={addBtnHandler}>Add</StyledInputButton>
         <Styledh1>TO DO LIST:</Styledh1>
       </StyledDiv>
-      <StyledInputDiv></StyledInputDiv>
+      <StyledTodoDiv>
+        <UserItems userInputData={userInputData} onRemove={removeItemHandler} />
+      </StyledTodoDiv>
     </Fragment>
   );
 };

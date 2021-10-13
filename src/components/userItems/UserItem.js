@@ -1,9 +1,11 @@
-import React from 'react'
 
-const UserItem = () => {
+const UserItem = props => {
+
+    const item = props.item;
+
     return (
         <div>
-            
+            {item}
         </div>
     )
 }
