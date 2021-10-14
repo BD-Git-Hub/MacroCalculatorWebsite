@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useCallback, useRef, useState } from "react";
 import styled from "styled-components";
 import UserItems from "../userItems/UserItems";
 
@@ -55,10 +55,11 @@ const Main = () => {
     setInput("");
   };
 
-  const removeItemHandler = id => {
-      console.log(id);
+  const removeItemHandler = (id) => {
+    const filteredUserData = userInputData.filter((Data) => Data.key !== id);
 
-  }
+    setUserInputData(filteredUserData);
+  };
 
   return (
     <Fragment>
