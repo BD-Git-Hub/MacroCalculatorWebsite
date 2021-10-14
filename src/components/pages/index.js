@@ -59,6 +59,7 @@ const Main = () => {
     const filteredUserData = userInputData.filter((Data) => Data.key !== id);
 
     setUserInputData(filteredUserData);
+    
   };
 
   return (
