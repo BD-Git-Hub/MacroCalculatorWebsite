@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useRef, useState } from "react";
+import { Fragment, useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import UserItems from "../userItems/UserItems";
 
@@ -56,11 +56,45 @@ const Main = () => {
   };
 
   const removeItemHandler = (id) => {
-    const filteredUserData = userInputData.filter((Data) => Data.key !== id);
-
-    setUserInputData(filteredUserData);
-    
+    setUserInputData((prevUserInputData) => {
+      return prevUserInputData.filter((item) => item.key !== id);
+    });
   };
+
+  useEffect(() => {
+    fetch(
+      "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          item: userInputData,
+        }),
+        headers: {
+          "Content-Type": "application/JSON",
+        },
+      }
+    )
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            let errorMessage = "Sending Macros data failed";
+
+            if (data && data.error && data.error.message) {
+              errorMessage = data.error.message;
+            }
+            throw new Error(errorMessage);
+          });
+        }
+      })
+
+      .catch((err) => {
+        alert(err.message);
+      });
+
+    return () => {};
+  }, [userInputData]);
 
   return (
     <Fragment>
@@ -72,7 +106,7 @@ const Main = () => {
           onChange={(e) => setInput(e.target.value)}
         ></StyledInput>
         <StyledInputButton onClick={addBtnHandler}>Add</StyledInputButton>
-        <Styledh1>TO DO LIST:</Styledh1>
+        <Styledh1>Bovs MacroCalculator:</Styledh1>
       </StyledDiv>
       <StyledTodoDiv>
         <UserItems userInputData={userInputData} onRemove={removeItemHandler} />
