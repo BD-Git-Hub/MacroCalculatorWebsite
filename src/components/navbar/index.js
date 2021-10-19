@@ -62,7 +62,7 @@ const Navbar = () => {
             onChange={(e) => setEnteredUsername(e.target.value)}
             onBlur={blurValidUserInputHandler}
           ></StyledUserInput>
-          <label htmlfor="password">Password</label>
+          <label htmlFor="password">Password</label>
           <StyledPasswordInput
             focusColor={emptyPassword}
             onBlur={blurValidPasswordInputHandler}

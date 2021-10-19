@@ -53,6 +53,9 @@ const Main = () => {
 
     //clear input field
     setInput("");
+
+    
+    //postDataHandler();
   };
 
   const removeItemHandler = (id) => {
@@ -61,40 +64,68 @@ const Main = () => {
     });
   };
 
-  useEffect(() => {
-    fetch(
-      "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          item: userInputData,
-        }),
-        headers: {
-          "Content-Type": "application/JSON",
-        },
-      }
-    )
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = "Sending Macros data failed";
-
-            if (data && data.error && data.error.message) {
-              errorMessage = data.error.message;
-            }
-            throw new Error(errorMessage);
-          });
+  //RETRIEVE DATA FROM DATABASE
+  const retrieveDataHandler = async () => {
+    try {
+      const response = await fetch(
+        "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
+        {
+          method: "GET",
         }
-      })
+      );
 
-      .catch((err) => {
-        alert(err.message);
-      });
+      if (!response.ok) {
+        throw new Error("retrieving data failed");
+      }
+
+      const data = await response.json();
+
+      const loadedMacros = [];
+
+      for (const key in data) {
+        const removedFirstItem = data[key].slice(1);
+
+        loadedMacros.push({
+          key: removedFirstItem[0].key,
+          userData: removedFirstItem[0].userData,
+        });
+      }
+
+      setUserInputData(loadedMacros);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  useEffect(() => {
+    retrieveDataHandler();
 
     return () => {};
-  }, [userInputData]);
+  }, []);
+
+  //POST DATA TO DATABASE
+  // const postDataHandler = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
+  //       {
+  //         method: "POST",
+  //         body: JSON.stringify(userInputData),
+  //         headers: {
+  //           "Content-Type": "application/JSON",
+  //         },
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       throw new Error("response failed!");
+  //     }
+
+  //     //const data = response.json();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <Fragment>
@@ -116,3 +147,34 @@ const Main = () => {
 };
 
 export default Main;
+
+//RETRIEVE DATA FROM DATABASE
+// useEffect(() => {
+//   fetch(
+//     "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
+//     {
+//       method: "GET",
+//     }
+//   )
+//     .then((res) => {
+//       if (res.ok) {
+
+//         return res.json();
+//       } else {
+//         return res.json().then((data) => {
+//           let errorMessage = "Sending Macros data failed";
+
+//           if (data && data.error && data.error.message) {
+//             errorMessage = data.error.message;
+//           }
+//           throw new Error(errorMessage);
+//         });
+//       }
+//     })
+
+//     .catch((err) => {
+//       alert(err.message);
+//     });
+
+//   return () => {};
+// }, []);
