@@ -31,28 +31,53 @@ const StyledTodoDiv = styled.div`
 `;
 
 const Main = () => {
-  const inputRef = useRef();
+  const titleRef = useRef();
+  const carbRef = useRef();
+  const proteinRef = useRef();
+  const fatsRef = useRef();
+
+  const [titleInput, setTitleInput] = useState("");
+  const [carbInput, setCarbInput] = useState("");
+  const [proteinInput, setProteinInput] = useState("");
+  const [fatsInput, setFatsInput] = useState("");
+
   const [userInputData, setUserInputData] = useState([{}]);
-  const [input, setInput] = useState("");
+  
 
   const addBtnHandler = () => {
     //check data in input field
-    const inputData = inputRef.current.value;
+    // const inputData = titleRef.current.value;
 
-    if (!inputData || !userInputData) {
-      return;
-    }
+    // if (!inputData || !userInputData) {
+    //   return;
+    // }
 
-    //set
-    setUserInputData((prevState) => {
-      return [
-        ...prevState,
-        { key: Math.random().toString(), userData: inputData },
-      ];
-    });
+    // //set
+    // setUserInputData((prevState) => {
+
+    //   if(prevState.length === 0) {
+    //     console.log('empty []')
+    //     return [{key: Math.random().toString(), userData: inputData}]
+
+    //   } else {
+    //     console.log('adding prevState with empty array')
+    //     return [
+          
+    //     ...prevState,
+    //     { key: Math.random().toString(), userData: inputData },
+    //   ];
+
+    //   }
+      
+    // });
+
+   
 
     //clear input field
-    setInput("");
+    setTitleInput("");
+    setCarbInput("");
+    setProteinInput("");
+    setFatsInput("");
 
     
     //postDataHandler();
@@ -65,77 +90,102 @@ const Main = () => {
   };
 
   //RETRIEVE DATA FROM DATABASE
-  const retrieveDataHandler = async () => {
-    try {
-      const response = await fetch(
-        "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
-        {
-          method: "GET",
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("retrieving data failed");
-      }
-
-      const data = await response.json();
-
-      const loadedMacros = [];
-
-      for (const key in data) {
-        const removedFirstItem = data[key].slice(1);
-
-        loadedMacros.push({
-          key: removedFirstItem[0].key,
-          userData: removedFirstItem[0].userData,
-        });
-      }
-
-      setUserInputData(loadedMacros);
-    } catch (error) {
-      alert(error);
-    }
-  };
-
-  useEffect(() => {
-    retrieveDataHandler();
-
-    return () => {};
-  }, []);
-
-  //POST DATA TO DATABASE
-  // const postDataHandler = async () => {
+  // const retrieveDataHandler = async () => {
   //   try {
   //     const response = await fetch(
   //       "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
   //       {
-  //         method: "POST",
-  //         body: JSON.stringify(userInputData),
-  //         headers: {
-  //           "Content-Type": "application/JSON",
-  //         },
+  //         method: "GET",
   //       }
   //     );
 
   //     if (!response.ok) {
-  //       throw new Error("response failed!");
+  //       throw new Error("retrieving data failed");
   //     }
 
-  //     //const data = response.json();
+  //     const data = await response.json();
+
+  //     const loadedMacros = [];
+
+  //     for (const key in data) {
+  //       const removedFirstItem = data[key].slice(1);
+
+  //       loadedMacros.push({
+  //         key: removedFirstItem[0].key,
+  //         userData: removedFirstItem[0].userData,
+  //       });
+  //     }
+
+  //     setUserInputData(loadedMacros);
   //   } catch (error) {
-  //     console.log(error);
+  //     alert(error);
   //   }
   // };
+
+  // useEffect(() => {
+  //   retrieveDataHandler();
+
+  //   return () => {};
+  // }, []);
+
+  //POST DATA TO DATABASE
+  const postDataHandler = async () => {
+    console.log(userInputData)
+    // try {
+    //   const response = await fetch(
+    //     "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
+    //     {
+    //       method: "POST",
+    //       body: JSON.stringify(userInputData),
+    //       headers: {
+    //         "Content-Type": "application/JSON",
+    //       },
+    //     }
+    //   );
+
+    //   if (!response.ok) {
+    //     throw new Error("response failed!");
+    //   }
+
+    //   //const data = response.json();
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  };
 
   return (
     <Fragment>
       <StyledDiv>
+        <label htmlFor="macroTitle">Title</label>
         <StyledInput
           type="text"
-          ref={inputRef}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        ></StyledInput>
+          ref={titleRef}
+          value={titleInput}
+          onChange={(e) => setTitleInput(e.target.value)}
+        />
+        <label htmlFor="carbohydrateTitle">Carbohydrates:</label>
+        <StyledInput
+          type="text"
+          ref={carbRef}
+          value={carbInput}
+          onChange={(e) => setCarbInput(e.target.value)}
+        />
+        <label htmlFor="proteinTitle">proteins:</label>
+        <StyledInput
+          type="text"
+          ref={proteinRef}
+          value={proteinInput}
+          onChange={(e) => setProteinInput(e.target.value)}
+        />
+        <label htmlFor="proteinTitle">Fats:</label>
+        <StyledInput
+          type="text"
+          ref={fatsRef}
+          value={fatsInput}
+          onChange={(e) => setFatsInput(e.target.value)}
+        />
+
+
         <StyledInputButton onClick={addBtnHandler}>Add</StyledInputButton>
         <Styledh1>Bovs MacroCalculator:</Styledh1>
       </StyledDiv>
