@@ -1,13 +1,7 @@
+const UserItem = (props) => {
+  const item = props.item;
 
-const UserItem = props => {
+  return <div>{item}</div>;
+};
 
-    const item = props.item;
-
-    return (
-        <div>
-            {item}
-        </div>
-    )
-}
-
-export default UserItem
+export default UserItem;
