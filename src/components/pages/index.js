@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState, useEffect } from "react";
+import { Fragment, useRef, useState, useEffect, useReducer } from "react";
 import styled from "styled-components";
 import UserItems from "../userItems/UserItems";
 
@@ -116,18 +116,7 @@ const Main = () => {
 
       const data = await response.json();
 
-      const loadedMacros = [];
-
       setUserInputData(data);
-
-      // for (const key in data) {
-      //   const removedFirstItem = data[key].slice(1);
-
-      //   loadedMacros.push({
-      //     key: removedFirstItem[0].key,
-      //     userData: removedFirstItem[0].userData,
-      //   });
-      // }
 
       //setUserInputData(loadedMacros);
     } catch (error) {
@@ -158,6 +147,10 @@ const Main = () => {
       alert(error);
     }
   };
+
+
+  
+
 
   return (
     <Fragment>
@@ -192,7 +185,9 @@ const Main = () => {
         />
 
         <StyledInputButton onClick={addBtnHandler}>Add</StyledInputButton>
-        <Styledh1>Bovs MacroCalculator:</Styledh1>
+        
+
+        <Styledh1>MacroCalculator:</Styledh1>
       </StyledDiv>
       <StyledTodoDiv>
         <UserItems macroData={userInputData} onRemove={removeItemHandler} />
