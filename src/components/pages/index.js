@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState, useEffect, useReducer } from "react";
+import { Fragment, useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import UserItems from "../userItems/UserItems";
 
@@ -148,10 +148,6 @@ const Main = () => {
     }
   };
 
-
-  
-
-
   return (
     <Fragment>
       <StyledDiv>
@@ -185,7 +181,6 @@ const Main = () => {
         />
 
         <StyledInputButton onClick={addBtnHandler}>Add</StyledInputButton>
-        
 
         <Styledh1>MacroCalculator:</Styledh1>
       </StyledDiv>

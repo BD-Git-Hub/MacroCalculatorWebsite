@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledDiv = div.styled`
+const StyledDiv = styled.div`
         display: 'flex',
         justifyContent: 'Right',
         alignItems: 'Right',

@@ -2,15 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import AuthContextProvider from "./components/context/AuthContext";
 import reportWebVitals from "./reportWebVitals";
+import AuthContext from "./components/context/AuthContext";
+import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
-    <AuthContextProvider>
-  <React.StrictMode>
-      <App />
-  </React.StrictMode>
-    </AuthContextProvider>,
+  <Router>
+    <AuthContext>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </AuthContext>
+  </Router>,
+
   document.getElementById("root")
 );
 

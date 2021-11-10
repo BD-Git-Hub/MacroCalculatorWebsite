@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { AuthContext } from "../context/AuthContext";
+import { authContext } from "../context/AuthContext";
 
 const Styledbutton = styled.button``;
 
@@ -13,8 +13,7 @@ const StyledPasswordInput = styled.input`
 `;
 
 const Auth = () => {
-
-  const authContext = useContext(AuthContext)
+  const authCtx = useContext(authContext);
 
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
@@ -47,9 +46,44 @@ const Auth = () => {
   };
 
   const loginHandler = () => {
-      authContext.login();
-  }
+    authCtx.login();
 
+    fetch(
+      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDKx4s2Yj2na069sDc3FOtDc7NYnHq7-XU",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          email: enteredUsername,
+          password: enteredPassword,
+          returnSecureToken: true,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return response.json().then((data) => {
+            let errorMessage = "Authentication failed!";
+
+            if (data && data.error && data.error.message) {
+              errorMessage = data.error.message;
+            }
+
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
 
   return (
     <form onSubmit={signInHandler}>
@@ -65,11 +99,15 @@ const Auth = () => {
       <StyledPasswordInput
         focusColor={emptyPassword}
         onBlur={blurValidPasswordInputHandler}
-        type="text"
+        type="password"
         value={enteredPassword}
         onChange={(e) => setEnteredPassword(e.target.value)}
       ></StyledPasswordInput>
-      <Styledbutton type="submit" disabled={!validUserNameAndPassword} onClick={loginHandler}>
+      <Styledbutton
+        type="submit"
+        disabled={!validUserNameAndPassword}
+        onClick={loginHandler}
+      >
         Sign In
       </Styledbutton>
     </form>
