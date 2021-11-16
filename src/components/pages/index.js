@@ -89,7 +89,7 @@ const Main = () => {
 
   useEffect(() => {
     //postDataHandler(userInputData);
-    retrieveDataHandler();
+    //retrieveDataHandler(); <<<--DATA RETRIEVED
 
     return () => {};
   }, [userInputData]);

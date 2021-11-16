@@ -6,7 +6,7 @@ const Logout = () => {
     const authCtx = useContext(authContext)
 
 
-    return <div><button onClick={authCtx.login}>Log Out</button></div>
+    return <div><button onClick={authCtx.logout}>Log Out</button></div>
 }
 
 export default Logout

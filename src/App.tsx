@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from "react-router";
 import Navbar from "./components/navbar";
 import Main from "./components/pages";
 import About from "./components/pages/About";
+import ChangePassword from "./components/pages/ChangePassword";
 import SignUp from "./components/pages/Signup";
 
 function App() {
@@ -22,10 +23,16 @@ function App() {
           <Main />
         </Route>
 
-        <Route path="*">
+        <Route path="/changePassword">
+          <ChangePassword />
+        </Route>
+
+         <Route path="*">
           <Redirect to="/macros" />
           <Main />
-        </Route>
+        </Route> 
+        
+
       </Switch>
     </React.Fragment>
   );

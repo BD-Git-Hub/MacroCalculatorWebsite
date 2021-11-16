@@ -46,8 +46,6 @@ const Auth = () => {
   };
 
   const loginHandler = () => {
-    authCtx.login();
-
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDKx4s2Yj2na069sDc3FOtDc7NYnHq7-XU",
       {
@@ -78,7 +76,8 @@ const Auth = () => {
         }
       })
       .then((data) => {
-        console.log(data);
+        console.log("success");
+        authCtx.login(data.idToken);
       })
       .catch((err) => {
         alert(err.message);
