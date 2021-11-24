@@ -76,8 +76,12 @@ const Auth = () => {
         }
       })
       .then((data) => {
+
+        const expirationTime = new Date(new Date().getTime() + (+data.expiresIn * 1000));
+
+
         console.log("success");
-        authCtx.login(data.idToken);
+        authCtx.login(data.idToken, expirationTime.toISOString());
       })
       .catch((err) => {
         alert(err.message);

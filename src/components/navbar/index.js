@@ -27,7 +27,7 @@ const Navbar = () => {
       <NavMenu>
         <NavLink to="/about">About</NavLink>
         {!authCtx.isLoggedIn && <NavLink to="/signup">Sign Up</NavLink>}
-        {authCtx.isLoggedIn && <NavLink to="/changePassword">Change Password</NavLink>}
+        {authCtx.isLoggedIn && <NavLink to="/changepassword">Change Password</NavLink>}
         <NavLink to="/macros">Macros</NavLink>
       </NavMenu>
       <NavBtn>{context}</NavBtn>

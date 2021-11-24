@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router";
+import { authContext } from "./components/context/AuthContext";
 import Navbar from "./components/navbar";
 import Main from "./components/pages";
 import About from "./components/pages/About";
@@ -7,6 +8,9 @@ import ChangePassword from "./components/pages/ChangePassword";
 import SignUp from "./components/pages/Signup";
 
 function App() {
+  
+
+  const authCtx = useContext(authContext)
   return (
     <React.Fragment>
       <Navbar />
@@ -15,17 +19,18 @@ function App() {
           <About />
         </Route>
 
-        <Route path="/signup" exact>
+        {!authCtx.isloggedIn && <Route path="/signup" exact>
           <SignUp />
-        </Route>
+        </Route>}
 
         <Route path="/macros" exact>
           <Main />
         </Route>
 
-        <Route path="/changePassword">
+
+         {!authCtx.isloggedIn && <Route path="/changepassword">
           <ChangePassword />
-        </Route>
+        </Route>}
 
          <Route path="*">
           <Redirect to="/macros" />

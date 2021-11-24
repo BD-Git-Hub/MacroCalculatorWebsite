@@ -3,11 +3,10 @@ import { authContext } from "../context/AuthContext";
 import { useHistory } from "react-router";
 
 const ChangePassword = () => {
-    const history = useHistory();
-  const authCtx = useContext(authContext)
+  const history = useHistory();
+  const authCtx = useContext(authContext);
   const passwordRef = useRef();
   const [isLoading, SetisLoading] = useState(false);
-
 
   const SubmitHandler = (e) => {
     e.preventDefault();
@@ -17,21 +16,24 @@ const ChangePassword = () => {
 
     //add validation for password instead of minlength in input type.
 
-    fetch('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDKx4s2Yj2na069sDc3FOtDc7NYnHq7-XU', {
-        method: 'POST',
+    fetch(
+      "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDKx4s2Yj2na069sDc3FOtDc7NYnHq7-XU",
+      {
+        method: "POST",
         body: JSON.stringify({
-            idToken: authCtx.token,
-            password: inputPassword,
-            returnSecureToken: false
+          idToken: authCtx.token,
+          password: inputPassword,
+          returnSecureToken: false,
         }),
         headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(response => {
-        //always success
-        SetisLoading(false);
-        history.replace('/')
-    })
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((response) => {
+      //always success
+      SetisLoading(false);
+      history.replace("/");
+    });
   };
 
   return (
@@ -45,7 +47,6 @@ const ChangePassword = () => {
 
       {isLoading && <p>Submitting...</p>}
       {!isLoading && <p>password change successful!</p>}
-
     </div>
   );
 };
