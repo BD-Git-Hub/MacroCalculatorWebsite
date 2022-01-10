@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { useHistory } from "react-router";
 import { authContext } from "../context/AuthContext";
 
 const Logout = () => {

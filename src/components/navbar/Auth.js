@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { authContext } from "../context/AuthContext";
+import { useHistory } from "react-router";
 
 const Styledbutton = styled.button``;
 
@@ -13,6 +14,7 @@ const StyledPasswordInput = styled.input`
 `;
 
 const Auth = () => {
+  const history = useHistory();
   const authCtx = useContext(authContext);
 
   const [enteredUsername, setEnteredUsername] = useState("");
@@ -76,12 +78,11 @@ const Auth = () => {
         }
       })
       .then((data) => {
-
-        const expirationTime = new Date(new Date().getTime() + (+data.expiresIn * 1000));
-
-
-        console.log("success");
+        const expirationTime = new Date(
+          new Date().getTime() + +data.expiresIn * 1000
+        );
         authCtx.login(data.idToken, expirationTime.toISOString());
+        history.replace("/");
       })
       .catch((err) => {
         alert(err.message);

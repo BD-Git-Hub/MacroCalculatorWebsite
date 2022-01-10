@@ -8,9 +8,7 @@ import ChangePassword from "./components/pages/ChangePassword";
 import SignUp from "./components/pages/Signup";
 
 function App() {
-  
-
-  const authCtx = useContext(authContext)
+  const authCtx = useContext(authContext);
   return (
     <React.Fragment>
       <Navbar />
@@ -19,25 +17,25 @@ function App() {
           <About />
         </Route>
 
-        {!authCtx.isloggedIn && <Route path="/signup" exact>
-          <SignUp />
-        </Route>}
-
-        <Route path="/macros" exact>
-          <Main />
+        <Route path="/signup" exact>
+          {!authCtx.token &&<SignUp />}
+          {authCtx.token &&  <Redirect to="/macros" />}
+                   
         </Route>
 
+        <Route path="/macros" exact>
+          {authCtx.token && <Main />}
+        </Route>
 
-         {!authCtx.isloggedIn && <Route path="/changepassword">
+        <Route path="/changepassword">
           <ChangePassword />
-        </Route>}
+        </Route>
 
-         <Route path="*">
-          <Redirect to="/macros" />
+        <Route path="*">
+          <Redirect to="/signup" />
+
           <Main />
-        </Route> 
-        
-
+        </Route>
       </Switch>
     </React.Fragment>
   );

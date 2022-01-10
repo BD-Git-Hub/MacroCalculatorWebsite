@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { useRef, useState } from "react";
+
 const StyledDiv = styled.div`
         display: 'flex',
         justifyContent: 'Right',
         alignItems: 'Right',
         height: '100vh'
-
 `;
 
 const SignUp = () => {
@@ -23,7 +23,7 @@ const SignUp = () => {
     //add validation to email being valid
     //add validation for password being 5 letters or more, has numbers, 1 capital
 
-    setIsloading(true)
+    setIsloading(true);
 
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDKx4s2Yj2na069sDc3FOtDc7NYnHq7-XU",
@@ -38,28 +38,29 @@ const SignUp = () => {
           "Content-Type": "application/json",
         },
       }
-    ).then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        return response.json().then((data) => {
-          let errorMessage = "Authentication failed!";
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return response.json().then((data) => {
+            let errorMessage = "Authentication failed!";
 
-          if (data && data.error && data.error.message) {
-            errorMessage = data.error.message;
-          }
+            if (data && data.error && data.error.message) {
+              errorMessage = data.error.message;
+            }
 
-          throw new Error(errorMessage);
-        });
-      }
-    })
-    .then((data) => {
-      console.log(data);
-      setIsloading(false)
-    })
-    .catch((err) => {
-      alert(err.message);
-    });
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        setIsloading(false);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   };
 
   return (
