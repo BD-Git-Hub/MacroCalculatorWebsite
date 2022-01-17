@@ -36,6 +36,7 @@ const Main = () => {
   let userTokenId = authCtx.token;
   let itemCount = useRef();
   let controller = new AbortController();
+  let notSubmitted = true;
 
   const titleRef = useRef();
   const carbRef = useRef();
@@ -48,6 +49,8 @@ const Main = () => {
   const [fatsInput, setFatsInput] = useState("");
 
   const [userInputData, setUserInputData] = useState([]);
+  const [userData, setUserData] = useState(false);
+
 
   const addBtnHandler = () => {
     //check data in input field
@@ -124,6 +127,7 @@ const Main = () => {
           if (data === null) {
             //console.log("no data in firebase");
             //>>>tell user that no information has been added yet<<<
+            setUserData(true);
             return;
           } else {
             setUserInputData(data);
@@ -137,20 +141,15 @@ const Main = () => {
       retrieveDataHandler();
     }
 
-
-    
-
     return () => {
       controller.abort();
       setUserInputData([]);
     };
   }, [userTokenId]);
 
-  
-
   //POST DATA TO DATABASE
   const postDataHandler = async (userData) => {
-    console.log(userData);
+    //console.log('dataPosted')
     try {
       const response = await fetch(
         "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
@@ -172,12 +171,15 @@ const Main = () => {
     }
   };
 
-  
-  if(userInputData > itemCount) {
-    postDataHandler(userInputData)
+  if (itemCount.current === undefined) {
+    if (userInputData.length > 0) {
+      postDataHandler(userInputData);
+    }
+  } else if (userInputData > itemCount) {
+    postDataHandler(userInputData);
   }
 
-
+  
   return (
     <Fragment>
       <StyledDiv>
@@ -215,7 +217,8 @@ const Main = () => {
         <Styledh1>MacroCalculator:</Styledh1>
       </StyledDiv>
       <StyledTodoDiv>
-        <UserItems macroData={userInputData} onRemove={removeItemHandler} />
+        {userData && <p>No personal data, please add some macros!</p>}
+        {!userData && <UserItems macroData={userInputData} onRemove={removeItemHandler} />}
       </StyledTodoDiv>
     </Fragment>
   );
@@ -223,5 +226,6 @@ const Main = () => {
 
 export default Main;
 
-//need to stop post function from firing every letter typed. 
+//need to stop post function from firing on every letter typed.
 //need to give user feedback if no user data has been saved.
+//
