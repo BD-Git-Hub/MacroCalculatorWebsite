@@ -1,11 +1,4 @@
-import {
-  Fragment,
-  useRef,
-  useState,
-  useContext,
-  useEffect,
-  useCallback,
-} from "react";
+import { Fragment, useRef, useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { authContext } from "../context/AuthContext";
 import UserItems from "../userItems/UserItems";
@@ -41,6 +34,8 @@ const StyledTodoDiv = styled.div`
 const Main = () => {
   const authCtx = useContext(authContext);
   let userTokenId = authCtx.token;
+  let itemCount = useRef();
+  let controller = new AbortController();
 
   const titleRef = useRef();
   const carbRef = useRef();
@@ -55,8 +50,6 @@ const Main = () => {
   const [userInputData, setUserInputData] = useState([]);
 
   const addBtnHandler = () => {
-    console.log(userTokenId);
-
     //check data in input field
     const titleData = titleRef.current.value;
     const carbData = carbRef.current.value;
@@ -100,66 +93,74 @@ const Main = () => {
     setFatsInput("");
   };
 
-  //RETRIEVE DATA FROM DATABASE
-  const retrieveDataHandler = useCallback(async () => {
-    console.log("retrieve Data");
-
-    try {
-      const response = await fetch(
-        "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
-        {
-          method: "GET",
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("retrieving data failed");
-      }
-
-      const data = await response.json();
-
-      setUserInputData(data);
-
-      //setUserInputData(loadedMacros);
-    } catch (error) {
-      alert(error);
-    }
-  }, []);
-
-  // useEffect(() => {
-  //   if (userInputData.length === 0) {
-  //     return;
-  //   } else if (userInputData.length > 0 && dataRecieved) {
-  //     retrieveDataHandler();
-  //   } else if (userTokenId) {
-  //     console.log("userToken Found!");
-  //     retrieveDataHandler();
-  //   } else {
-  //     postDataHandler(userInputData);
-  //   }
-
-  //   return () => {};
-  // }, [userInputData, dataRecieved, retrieveDataHandler, userTokenId]);
-
   const removeItemHandler = (id) => {
     setUserInputData((prevUserInputData) => {
       return prevUserInputData.filter((item) => item.key !== id);
     });
   };
 
+  useEffect(() => {
+    let controller = new AbortController();
+
+    if (userTokenId) {
+      //console.log("fired!");
+      //RETRIEVE DATA FROM DATABASE
+      const retrieveDataHandler = async () => {
+        try {
+          const response = await fetch(
+            "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
+            {
+              method: "GET",
+              signal: controller.signal,
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("retrieving data failed");
+          }
+
+          const data = await response.json();
+
+          if (data === null) {
+            //console.log("no data in firebase");
+            //>>>tell user that no information has been added yet<<<
+            return;
+          } else {
+            setUserInputData(data);
+            itemCount.current = data.length;
+          }
+        } catch (error) {
+          alert(error);
+        }
+      };
+
+      retrieveDataHandler();
+    }
+
+
+    
+
+    return () => {
+      controller.abort();
+      setUserInputData([]);
+    };
+  }, [userTokenId]);
+
+  
+
   //POST DATA TO DATABASE
   const postDataHandler = async (userData) => {
-    console.log("postDataHandler");
-
+    console.log(userData);
     try {
       const response = await fetch(
-        `https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json`,
+        "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
         {
           method: "PUT",
           body: JSON.stringify(userData),
           headers: {
             "Content-Type": "application/JSON",
           },
+          signal: controller.signal,
         }
       );
       if (!response.ok) {
@@ -171,15 +172,11 @@ const Main = () => {
     }
   };
 
-  useEffect(() => {
-    if (userTokenId) {
-      retrieveDataHandler();
-    }
+  
+  if(userInputData > itemCount) {
+    postDataHandler(userInputData)
+  }
 
-    return () => {
-      setUserInputData([]);
-    };
-  }, [retrieveDataHandler, userTokenId]);
 
   return (
     <Fragment>
@@ -226,33 +223,5 @@ const Main = () => {
 
 export default Main;
 
-//RETRIEVE DATA FROM DATABASE
-// useEffect(() => {
-//   fetch(
-//     "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
-//     {
-//       method: "GET",
-//     }
-//   )
-//     .then((res) => {
-//       if (res.ok) {
-
-//         return res.json();
-//       } else {
-//         return res.json().then((data) => {
-//           let errorMessage = "Sending Macros data failed";
-
-//           if (data && data.error && data.error.message) {
-//             errorMessage = data.error.message;
-//           }
-//           throw new Error(errorMessage);
-//         });
-//       }
-//     })
-
-//     .catch((err) => {
-//       alert(err.message);
-//     });
-
-//   return () => {};
-// }, []);
+//need to stop post function from firing every letter typed. 
+//need to give user feedback if no user data has been saved.
