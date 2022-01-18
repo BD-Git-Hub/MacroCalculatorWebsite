@@ -1,12 +1,10 @@
-import UserItem from "./UserItem";
+import { Fragment } from "react";
 
 const UserItems = (props) => {
   const macroData = props.macroData;
 
-  //console.log(macroData);
-
   const data = macroData.map((macroData) => (
-    <div onClick={props.onRemove.bind(null, macroData.key)}>
+    <div onClick={props.onRemove.bind(null, macroData.key)} key={macroData.id}>
       <p>Title:{macroData.titleData}</p>
       <p>Carbohydrates:{macroData.carbsData}</p>
       <p>Proteins:{macroData.proteinsData}</p>
@@ -21,7 +19,8 @@ const UserItems = (props) => {
 
   //));
 
-  return <UserItem item={data} />;
+  return <Fragment>{data}</Fragment>;
+  //<UserItem item={data} />;
 };
 
 export default UserItems;

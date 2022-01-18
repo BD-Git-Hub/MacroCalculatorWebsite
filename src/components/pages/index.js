@@ -58,6 +58,7 @@ const Main = () => {
     const carbData = carbRef.current.value;
     const proteinData = proteinRef.current.value;
     const fatsData = fatsRef.current.value;
+    let keyGen = (Math.random() + 1).toString(36).substring(2)
 
     if (!titleData || !carbData || !proteinData || !fatsData) {
       return;
@@ -73,6 +74,7 @@ const Main = () => {
             carbsData: carbData,
             proteinsData: proteinData,
             fatsData: fatsData,
+            id: keyGen,
           },
         ];
       } else {
@@ -84,6 +86,7 @@ const Main = () => {
             carbsData: carbData,
             proteinsData: proteinData,
             fatsData: fatsData,
+            id: keyGen,
           },
         ];
       }
@@ -181,6 +184,10 @@ const Main = () => {
     setSubmitted(false);
   }
 
+  
+
+  
+
   return (
     <Fragment>
       <StyledDiv>
@@ -229,4 +236,6 @@ const Main = () => {
 
 export default Main;
 
-
+//if item is clicked make it removed and remove it from the database. 
+//allow users to change macros for each item.
+//load up data for each user. 
