@@ -16,7 +16,10 @@ const StyledInput = styled.input`
   margin-left 3rem;
 `;
 
-const StyledInputButton = styled.button`
+const StyledInputButton = styled.input.attrs({
+  type: "submit",
+  value: "SUBMIT"
+})`
   width: 15%;
   padding: 2rem 3rem;
   margin-left: 1rem;
@@ -46,19 +49,24 @@ const Main = () => {
   const [carbInput, setCarbInput] = useState("");
   const [proteinInput, setProteinInput] = useState("");
   const [fatsInput, setFatsInput] = useState("");
+  const [categorySelected, setCategorySelected] = useState();
 
   const [userInputData, setUserInputData] = useState([]);
 
   const [displayData, setDisplayData] = useState();
   const [submitted, setSubmitted] = useState(false);
 
-  const addBtnHandler = () => {
+  const addBtnHandler = (e) => {
+
+    e.preventDefault();
+
     //check data in input field
     const titleData = titleRef.current.value;
     const carbData = carbRef.current.value;
     const proteinData = proteinRef.current.value;
     const fatsData = fatsRef.current.value;
-    let keyGen = (Math.random() + 1).toString(36).substring(2)
+    const categoryData = categorySelected;
+    let keyGen = (Math.random() + 1).toString(36).substring(2);
 
     if (!titleData || !carbData || !proteinData || !fatsData) {
       return;
@@ -74,6 +82,7 @@ const Main = () => {
             carbsData: carbData,
             proteinsData: proteinData,
             fatsData: fatsData,
+            categoryData : categoryData,
             id: keyGen,
           },
         ];
@@ -86,6 +95,7 @@ const Main = () => {
             carbsData: carbData,
             proteinsData: proteinData,
             fatsData: fatsData,
+            categoryData : categoryData,
             id: keyGen,
           },
         ];
@@ -98,6 +108,10 @@ const Main = () => {
     setProteinInput("");
     setFatsInput("");
     setSubmitted(true);
+
+    setCategorySelected("breakfast");
+
+    
   };
 
   const removeItemHandler = (id) => {
@@ -179,48 +193,64 @@ const Main = () => {
     }
   };
 
+
+
   if (itemCount.current === undefined && submitted === true) {
     postDataHandler(userInputData);
     setSubmitted(false);
   }
 
-  
-
-  
+  const handleSelectChange = (event) => {
+    setCategorySelected(event.target.value);
+  }
 
   return (
     <Fragment>
       <StyledDiv>
-        <label htmlFor="macroTitle">Title</label>
-        <StyledInput
-          type="text"
-          ref={titleRef}
-          value={titleInput}
-          onChange={(e) => setTitleInput(e.target.value)}
-        />
-        <label htmlFor="carbohydrateTitle">Carbohydrates:</label>
-        <StyledInput
-          type="text"
-          ref={carbRef}
-          value={carbInput}
-          onChange={(e) => setCarbInput(e.target.value)}
-        />
-        <label htmlFor="proteinTitle">proteins:</label>
-        <StyledInput
-          type="text"
-          ref={proteinRef}
-          value={proteinInput}
-          onChange={(e) => setProteinInput(e.target.value)}
-        />
-        <label htmlFor="proteinTitle">Fats:</label>
-        <StyledInput
-          type="text"
-          ref={fatsRef}
-          value={fatsInput}
-          onChange={(e) => setFatsInput(e.target.value)}
-        />
+        <form onSubmit={addBtnHandler}>
+          <label htmlFor="macroTitle">Title</label>
+          <StyledInput
+            type="text"
+            ref={titleRef}
+            value={titleInput}
+            onChange={(e) => setTitleInput(e.target.value)}
+            name="macroTitle"
+          />
+          <label htmlFor="carbohydrateTitle">Carbohydrates:</label>
+          <StyledInput
+            type="text"
+            ref={carbRef}
+            value={carbInput}
+            onChange={(e) => setCarbInput(e.target.value)}
+            name="carbohydrateTitle"
+          />
+          <label htmlFor="proteinTitle">proteins:</label>
+          <StyledInput
+            type="text"
+            ref={proteinRef}
+            value={proteinInput}
+            onChange={(e) => setProteinInput(e.target.value)}
+            name="proteinTitle"
+          />
+          <label htmlFor="proteinTitle">Fats:</label>
+          <StyledInput
+            type="text"
+            ref={fatsRef}
+            value={fatsInput}
+            onChange={(e) => setFatsInput(e.target.value)}
+            name="proteinTitle"
+          />
+          <label htmlFor="category">Category:</label>
+          <select name="category" value={categorySelected} onChange={handleSelectChange}>
+            <option defaultValue={"breakfast"} value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="dinner">Snack</option>
+          </select>
 
-        <StyledInputButton onClick={addBtnHandler}>Add</StyledInputButton>
+          <StyledInputButton/> 
+
+        </form>
 
         <Styledh1>MacroCalculator:</Styledh1>
       </StyledDiv>
@@ -236,6 +266,7 @@ const Main = () => {
 
 export default Main;
 
-//if item is clicked make it removed and remove it from the database. 
-//allow users to change macros for each item.
-//load up data for each user. 
+//breakfast/lunch/dinner category.
+//organise macros into lunch / breakfast / dinner 
+//edit or remove btn for items on the list.
+//load up data for each user.
