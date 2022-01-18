@@ -34,9 +34,8 @@ const StyledTodoDiv = styled.div`
 const Main = () => {
   const authCtx = useContext(authContext);
   let userTokenId = authCtx.token;
-  let itemCount = useRef();
+  let itemCount = useRef(undefined);
   let controller = new AbortController();
-  let notSubmitted = true;
 
   const titleRef = useRef();
   const carbRef = useRef();
@@ -49,8 +48,9 @@ const Main = () => {
   const [fatsInput, setFatsInput] = useState("");
 
   const [userInputData, setUserInputData] = useState([]);
-  const [userData, setUserData] = useState(false);
 
+  const [displayData, setDisplayData] = useState();
+  const [submitted, setSubmitted] = useState(false);
 
   const addBtnHandler = () => {
     //check data in input field
@@ -94,6 +94,7 @@ const Main = () => {
     setCarbInput("");
     setProteinInput("");
     setFatsInput("");
+    setSubmitted(true);
   };
 
   const removeItemHandler = (id) => {
@@ -105,39 +106,42 @@ const Main = () => {
   useEffect(() => {
     let controller = new AbortController();
 
-    if (userTokenId) {
-      //console.log("fired!");
-      //RETRIEVE DATA FROM DATABASE
-      const retrieveDataHandler = async () => {
-        try {
-          const response = await fetch(
-            "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
-            {
-              method: "GET",
-              signal: controller.signal,
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("retrieving data failed");
+    //RETRIEVE DATA FROM DATABASE
+    const retrieveDataHandler = async () => {
+      try {
+        const response = await fetch(
+          "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
+          {
+            method: "GET",
+            signal: controller.signal,
           }
+        );
 
-          const data = await response.json();
-
-          if (data === null) {
-            //console.log("no data in firebase");
-            //>>>tell user that no information has been added yet<<<
-            setUserData(true);
-            return;
-          } else {
-            setUserInputData(data);
-            itemCount.current = data.length;
-          }
-        } catch (error) {
-          alert(error);
+        if (!response.ok) {
+          throw new Error("retrieving data failed");
         }
-      };
 
+        const data = await response.json();
+
+        if (data === null) {
+          //console.log("no data in firebase");
+          //>>>tell user that no information has been added yet<<<
+
+          setDisplayData(false);
+
+          return;
+        } else {
+          setUserInputData(data);
+          itemCount.current = data.length;
+
+          setDisplayData(true);
+        }
+      } catch (error) {
+        alert(error);
+      }
+    };
+
+    if (userTokenId) {
       retrieveDataHandler();
     }
 
@@ -147,9 +151,8 @@ const Main = () => {
     };
   }, [userTokenId]);
 
-  //POST DATA TO DATABASE
+  // //POST DATA TO DATABASE
   const postDataHandler = async (userData) => {
-    //console.log('dataPosted')
     try {
       const response = await fetch(
         "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
@@ -166,20 +169,18 @@ const Main = () => {
         throw new Error("response failed!");
       }
       //const data = response.json();
+
+      setDisplayData(true);
     } catch (error) {
       alert(error);
     }
   };
 
-  if (itemCount.current === undefined) {
-    if (userInputData.length > 0) {
-      postDataHandler(userInputData);
-    }
-  } else if (userInputData > itemCount) {
+  if (itemCount.current === undefined && submitted === true) {
     postDataHandler(userInputData);
+    setSubmitted(false);
   }
 
-  
   return (
     <Fragment>
       <StyledDiv>
@@ -217,8 +218,10 @@ const Main = () => {
         <Styledh1>MacroCalculator:</Styledh1>
       </StyledDiv>
       <StyledTodoDiv>
-        {userData && <p>No personal data, please add some macros!</p>}
-        {!userData && <UserItems macroData={userInputData} onRemove={removeItemHandler} />}
+        {!displayData && <p>No Data</p>}
+        {displayData && (
+          <UserItems macroData={userInputData} onRemove={removeItemHandler} />
+        )}
       </StyledTodoDiv>
     </Fragment>
   );
@@ -226,6 +229,4 @@ const Main = () => {
 
 export default Main;
 
-//need to stop post function from firing on every letter typed.
-//need to give user feedback if no user data has been saved.
-//
+
