@@ -259,6 +259,9 @@ const Main = () => {
         {displayData && (
           <UserItems macroData={userInputData} onRemove={removeItemHandler} />
         )}
+
+        {/* {displayData && <Breakfast/>}  */}
+
       </StyledTodoDiv>
     </Fragment>
   );
@@ -266,7 +269,4 @@ const Main = () => {
 
 export default Main;
 
-//breakfast/lunch/dinner category.
-//organise macros into lunch / breakfast / dinner 
-//edit or remove btn for items on the list.
-//load up data for each user.
+
