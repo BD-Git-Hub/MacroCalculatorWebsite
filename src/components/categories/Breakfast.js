@@ -9,9 +9,10 @@ const Breakfast = (props) => {
       <p>Fats:</p>
     </Fragment>
   );
+
+  
   let macroData = props.data;
 
-  console.log(macroData[0][0]);
 
   const item = macroData.map((macroData, index) => {
     let holder = "";
@@ -26,13 +27,6 @@ const Breakfast = (props) => {
   });
 
   userItemTemplate = item;
-
-  
-
-  // <p>Title:{props.macroData[0].title}</p>
-  // <p>Carbohydrates:{props.macroData[0].Carbohydrates}</p>
-  // <p>Proteins:{props.macroData[0].protein}</p>
-  // <p>Fats:{props.macroData[0].fats}</p>
 
   return userItemTemplate;
 };

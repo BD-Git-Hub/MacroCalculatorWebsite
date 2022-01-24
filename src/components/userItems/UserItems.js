@@ -1,6 +1,9 @@
 import { Fragment } from "react";
 import styled from "styled-components";
 import Breakfast from "../categories/Breakfast";
+import Lunch from "../categories/Lunch";
+import Dinner from "../categories/Dinner";
+import Snacks from "../categories/Snacks";
 
 const StyledDiv = styled.div`
   background-color: grey;
@@ -61,45 +64,102 @@ const CategoryItemDiv = styled.div`
   
 `;
 
+// const categorySort = (macroData) => {
+//   const categorisedData = macroData.filter((macroData) => {
+//     let holder;
+
+//     if (macroData[4] === "breakfast") {
+
+//       holder = macroData;
+
+//     }
+//     if (macroData[4] === "lunch") {
+//       holder = macroData;
+//     }
+//     if (macroData[4] === "dinner") {
+//       holder = macroData;
+//     }
+//     if (macroData[4] === "snacks") {
+//       holder = macroData;
+//     }
+
+//     return holder;
+//   });
+
+//   return categorisedData;
+// };
+
+const objToArr = (macroData) => {
+  const arr = macroData.map((macroData) => {
+    let arr = [];
+    let titleData = "";
+    let carbData = "";
+    let proteinsData = "";
+    let fatsData = "";
+    let categoryData = "";
+
+    titleData = macroData.titleData;
+    carbData = macroData.carbsData;
+    proteinsData = macroData.proteinsData;
+    fatsData = macroData.fatsData;
+    categoryData = macroData.categoryData;
+
+    arr = [titleData, carbData, proteinsData, fatsData, categoryData];
+
+    return arr;
+  });
+  return arr;
+};
+
 const UserItems = (props) => {
   let macroData = props.macroData;
-
-  const objToArr = (macroData) => {
-    const arr = macroData.map((macroData) => {
-      let arr = [];
-      let titleData = "";
-      let carbData = "";
-      let proteinsData = "";
-      let fatsData = "";
-
-      titleData = macroData.titleData;
-      carbData = macroData.carbsData;
-      proteinsData = macroData.proteinsData;
-      fatsData = macroData.fatsData;
-
-      arr = [titleData, carbData, proteinsData, fatsData];
-
-      return arr;
-    });
-    return arr;
-  };
-
   const data = objToArr(macroData);
+
+  
 
   let categoryTemplate = (
     <StyledDiv>
       <BreakfastDiv>
         <Styledh1>Breakfast</Styledh1>
-        <Breakfast data={data} />
+        <Breakfast
+          data={data.filter((data) => {
+            let holder;
+            if (data[4] === "breakfast") {
+              holder = data;
+            }
+            return holder;
+          })}
+        />
       </BreakfastDiv>
       <LunchDiv>
         <Styledh1>Lunch</Styledh1>
+        <Lunch data={data.filter((data) => {
+    let holder;
+    if (data[4] === "lunch") {
+      holder = data;
+    }
+    return holder;
+  })}></Lunch>
       </LunchDiv>
       <DinnerDiv>
         <Styledh1>Dinner</Styledh1>
+        <Dinner data={data.filter((data) => {
+    let holder;
+    if (data[4] === "dinner") {
+      holder = data;
+    }
+    return holder;
+  })} />
       </DinnerDiv>
       <SnacksDiv>
         <Styledh1>Snacks</Styledh1>
+        <Snacks data={data.filter((data) => {
+    let holder;
+    if (data[4] === "snacks") {
+      holder = data;
+    }
+    return holder;
+  })} />
       </SnacksDiv>
     </StyledDiv>
   );
