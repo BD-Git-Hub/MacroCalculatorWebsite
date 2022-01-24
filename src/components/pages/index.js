@@ -18,7 +18,7 @@ const StyledInput = styled.input`
 
 const StyledInputButton = styled.input.attrs({
   type: "submit",
-  value: "SUBMIT"
+  value: "SUBMIT",
 })`
   width: 15%;
   padding: 2rem 3rem;
@@ -57,7 +57,6 @@ const Main = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const addBtnHandler = (e) => {
-
     e.preventDefault();
 
     //check data in input field
@@ -82,7 +81,7 @@ const Main = () => {
             carbsData: carbData,
             proteinsData: proteinData,
             fatsData: fatsData,
-            categoryData : categoryData,
+            categoryData: categoryData,
             id: keyGen,
           },
         ];
@@ -95,7 +94,7 @@ const Main = () => {
             carbsData: carbData,
             proteinsData: proteinData,
             fatsData: fatsData,
-            categoryData : categoryData,
+            categoryData: categoryData,
             id: keyGen,
           },
         ];
@@ -110,8 +109,6 @@ const Main = () => {
     setSubmitted(true);
 
     setCategorySelected("breakfast");
-
-    
   };
 
   const removeItemHandler = (id) => {
@@ -185,15 +182,12 @@ const Main = () => {
       if (!response.ok) {
         throw new Error("response failed!");
       }
-      //const data = response.json();
 
       setDisplayData(true);
     } catch (error) {
       alert(error);
     }
   };
-
-
 
   if (itemCount.current === undefined && submitted === true) {
     postDataHandler(userInputData);
@@ -202,7 +196,11 @@ const Main = () => {
 
   const handleSelectChange = (event) => {
     setCategorySelected(event.target.value);
-  }
+  };
+
+  
+
+
 
   return (
     <Fragment>
@@ -241,15 +239,20 @@ const Main = () => {
             name="proteinTitle"
           />
           <label htmlFor="category">Category:</label>
-          <select name="category" value={categorySelected} onChange={handleSelectChange}>
-            <option defaultValue={"breakfast"} value="breakfast">Breakfast</option>
+          <select
+            name="category"
+            value={categorySelected}
+            onChange={handleSelectChange}
+          >
+            <option defaultValue={"breakfast"} value="breakfast">
+              Breakfast
+            </option>
             <option value="lunch">Lunch</option>
             <option value="dinner">Dinner</option>
             <option value="dinner">Snack</option>
           </select>
 
-          <StyledInputButton/> 
-
+          <StyledInputButton />
         </form>
 
         <Styledh1>MacroCalculator:</Styledh1>
@@ -261,12 +264,9 @@ const Main = () => {
         )}
 
         {/* {displayData && <Breakfast/>}  */}
-
       </StyledTodoDiv>
     </Fragment>
   );
 };
 
 export default Main;
-
-

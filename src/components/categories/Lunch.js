@@ -14,7 +14,7 @@ const Lunch = (props) => {
     
       const item = macroData.map((macroData, index) => {
         let holder = "";
-        holder = <Fragment>
+        holder = <Fragment key={macroData[5]}>
           <p>Title:{macroData[0]}</p>
           <p>Carbohydrates:{macroData[1]}</p>
           <p>Proteins:{macroData[2]}</p>

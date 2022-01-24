@@ -56,13 +56,7 @@ const Styledh1 = styled.h1`
   text-transform: uppercase;
 `;
 
-const CategoryItemDiv = styled.div`
 
-  background-color: aquamarine;
-  padding 1% 0 1% 0;
-  margin-top: 1%;
-  
-`;
 
 // const categorySort = (macroData) => {
 //   const categorisedData = macroData.filter((macroData) => {
@@ -97,23 +91,28 @@ const objToArr = (macroData) => {
     let proteinsData = "";
     let fatsData = "";
     let categoryData = "";
+    let id = "";
 
     titleData = macroData.titleData;
     carbData = macroData.carbsData;
     proteinsData = macroData.proteinsData;
     fatsData = macroData.fatsData;
     categoryData = macroData.categoryData;
+    id = macroData.id;
 
-    arr = [titleData, carbData, proteinsData, fatsData, categoryData];
+    arr = [titleData, carbData, proteinsData, fatsData, categoryData, id];
 
     return arr;
   });
   return arr;
 };
 
+
 const UserItems = (props) => {
   let macroData = props.macroData;
   const data = objToArr(macroData);
+
+  
 
   
 
@@ -129,7 +128,7 @@ const UserItems = (props) => {
             }
             return holder;
           })}
-        />
+      />
       </BreakfastDiv>
       <LunchDiv>
         <Styledh1>Lunch</Styledh1>
@@ -139,7 +138,7 @@ const UserItems = (props) => {
       holder = data;
     }
     return holder;
-  })}></Lunch>
+  })} />
       </LunchDiv>
       <DinnerDiv>
         <Styledh1>Dinner</Styledh1>
