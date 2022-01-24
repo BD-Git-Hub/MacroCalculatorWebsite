@@ -64,32 +64,33 @@ const CategoryItemDiv = styled.div`
 const UserItems = (props) => {
   let macroData = props.macroData;
 
-  
-//>>>MACRODATA IS ARRAY WITH 3 OBJECTS, MAKE IT WORK BELOW FOR TRANSFERING IT AS THE SAME<<<
-  
+  const objToArr = (macroData) => {
+    const arr = macroData.map((macroData) => {
+      let arr = [];
+      let titleData = "";
+      let carbData = "";
+      let proteinsData = "";
+      let fatsData = "";
+
+      titleData = macroData.titleData;
+      carbData = macroData.carbsData;
+      proteinsData = macroData.proteinsData;
+      fatsData = macroData.fatsData;
+
+      arr = [titleData, carbData, proteinsData, fatsData];
+
+      return arr;
+    });
+    return arr;
+  };
+
+  const data = objToArr(macroData);
 
   let categoryTemplate = (
     <StyledDiv>
       <BreakfastDiv>
-        <Breakfast macroData={macroData.map((macroData) => {
-            let holder;
-            if (macroData.categoryData === "breakfast") {
-              
-
-
-              // const breakfastItem = {
-              //   title: macroData.titleData,
-              //   protein: macroData.proteinsData,
-              //   Carbohydrates: macroData.carbsData,
-              //   fats: macroData.fatsData,
-              // };
-              holder = breakfastItem;
-              return holder;
-            }
-            return holder;
-          })}
-        />
-        {/* <Styledh1>Breakfast</Styledh1> */}
+        <Styledh1>Breakfast</Styledh1>
+        <Breakfast data={data} />
       </BreakfastDiv>
       <LunchDiv>
         <Styledh1>Lunch</Styledh1>
