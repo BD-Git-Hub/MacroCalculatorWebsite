@@ -1,6 +1,5 @@
 
-
-//key issue needs to be fixed.
+//issue with adding an iteming to database and viewing item.
 
 //edit or remove btn for items on the list.
 
