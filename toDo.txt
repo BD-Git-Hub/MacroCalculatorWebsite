@@ -1,8 +1,9 @@
 
-//issue with adding an iteming to database and viewing item.
+//category default select needs to be added to database (currently does not).
+
+//issue with adding an item to database and displaying item on macro calculator.
 
 //edit or remove btn for items on the list.
 
 //load up data for each user.
 
-//category default select needs to be added to database (currently does not).

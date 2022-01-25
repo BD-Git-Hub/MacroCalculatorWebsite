@@ -49,7 +49,7 @@ const Main = () => {
   const [carbInput, setCarbInput] = useState("");
   const [proteinInput, setProteinInput] = useState("");
   const [fatsInput, setFatsInput] = useState("");
-  const [categorySelected, setCategorySelected] = useState();
+  const [categorySelected, setCategorySelected] = useState("breakfast");
 
   const [userInputData, setUserInputData] = useState([]);
 
@@ -167,6 +167,7 @@ const Main = () => {
 
   // //POST DATA TO DATABASE
   const postDataHandler = async (userData) => {
+
     try {
       const response = await fetch(
         "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
@@ -189,18 +190,23 @@ const Main = () => {
     }
   };
 
-  if (itemCount.current === undefined && submitted === true) {
+  // if (itemCount.current === undefined && submitted === true) {
+  //   postDataHandler(userInputData);
+  //   setSubmitted(false);
+  // }
+
+  //if submitted = true post data 
+  if(submitted === true) {
     postDataHandler(userInputData);
     setSubmitted(false);
+
   }
+
+  
 
   const handleSelectChange = (event) => {
     setCategorySelected(event.target.value);
   };
-
-  
-
-
 
   return (
     <Fragment>
@@ -239,17 +245,11 @@ const Main = () => {
             name="proteinTitle"
           />
           <label htmlFor="category">Category:</label>
-          <select
-            name="category"
-            value={categorySelected}
-            onChange={handleSelectChange}
-          >
-            <option defaultValue={"breakfast"} value="breakfast">
-              Breakfast
-            </option>
+          <select value={categorySelected} onChange={handleSelectChange}>
+            <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
             <option value="dinner">Dinner</option>
-            <option value="dinner">Snack</option>
+            <option value="snack">Snack</option>
           </select>
 
           <StyledInputButton />
@@ -262,8 +262,6 @@ const Main = () => {
         {displayData && (
           <UserItems macroData={userInputData} onRemove={removeItemHandler} />
         )}
-
-        {/* {displayData && <Breakfast/>}  */}
       </StyledTodoDiv>
     </Fragment>
   );

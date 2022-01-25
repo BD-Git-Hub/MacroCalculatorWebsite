@@ -154,7 +154,7 @@ const UserItems = (props) => {
         <Styledh1>Snacks</Styledh1>
         <Snacks data={data.filter((data) => {
     let holder;
-    if (data[4] === "snacks") {
+    if (data[4] === "snack") {
       holder = data;
     }
     return holder;
