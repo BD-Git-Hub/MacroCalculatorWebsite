@@ -58,31 +58,6 @@ const Styledh1 = styled.h1`
 
 
 
-// const categorySort = (macroData) => {
-//   const categorisedData = macroData.filter((macroData) => {
-//     let holder;
-
-//     if (macroData[4] === "breakfast") {
-
-//       holder = macroData;
-
-//     }
-//     if (macroData[4] === "lunch") {
-//       holder = macroData;
-//     }
-//     if (macroData[4] === "dinner") {
-//       holder = macroData;
-//     }
-//     if (macroData[4] === "snacks") {
-//       holder = macroData;
-//     }
-
-//     return holder;
-//   });
-
-//   return categorisedData;
-// };
-
 const objToArr = (macroData) => {
   const arr = macroData.map((macroData) => {
     let arr = [];
@@ -107,14 +82,11 @@ const objToArr = (macroData) => {
   return arr;
 };
 
-
 const UserItems = (props) => {
   let macroData = props.macroData;
+  let onRemove = props.onRemove;
+  
   const data = objToArr(macroData);
-
-  
-
-  
 
   let categoryTemplate = (
     <StyledDiv>
@@ -128,37 +100,45 @@ const UserItems = (props) => {
             }
             return holder;
           })}
-      />
+          onRemove={onRemove}
+          
+        />
       </BreakfastDiv>
       <LunchDiv>
         <Styledh1>Lunch</Styledh1>
-        <Lunch data={data.filter((data) => {
-    let holder;
-    if (data[4] === "lunch") {
-      holder = data;
-    }
-    return holder;
-  })} />
+        <Lunch
+          data={data.filter((data) => {
+            let holder;
+            if (data[4] === "lunch") {
+              holder = data;
+            }
+            return holder;
+          })}
+        />
       </LunchDiv>
       <DinnerDiv>
         <Styledh1>Dinner</Styledh1>
-        <Dinner data={data.filter((data) => {
-    let holder;
-    if (data[4] === "dinner") {
-      holder = data;
-    }
-    return holder;
-  })} />
+        <Dinner
+          data={data.filter((data) => {
+            let holder;
+            if (data[4] === "dinner") {
+              holder = data;
+            }
+            return holder;
+          })}
+        />
       </DinnerDiv>
       <SnacksDiv>
         <Styledh1>Snacks</Styledh1>
-        <Snacks data={data.filter((data) => {
-    let holder;
-    if (data[4] === "snack") {
-      holder = data;
-    }
-    return holder;
-  })} />
+        <Snacks
+          data={data.filter((data) => {
+            let holder;
+            if (data[4] === "snack") {
+              holder = data;
+            }
+            return holder;
+          })}
+        />
       </SnacksDiv>
     </StyledDiv>
   );

@@ -55,6 +55,7 @@ const Main = () => {
 
   const [displayData, setDisplayData] = useState();
   const [submitted, setSubmitted] = useState(false);
+  const [itemRemoved, setItemRemoved] = useState(false);
 
   const addBtnHandler = (e) => {
     e.preventDefault();
@@ -113,8 +114,10 @@ const Main = () => {
 
   const removeItemHandler = (id) => {
     setUserInputData((prevUserInputData) => {
-      return prevUserInputData.filter((item) => item.key !== id);
+      return prevUserInputData.filter((item) => item.id !== id);
     });
+
+    setItemRemoved(true);
   };
 
   useEffect(() => {
@@ -138,9 +141,6 @@ const Main = () => {
         const data = await response.json();
 
         if (data === null) {
-          //console.log("no data in firebase");
-          //>>>tell user that no information has been added yet<<<
-
           setDisplayData(false);
 
           return;
@@ -167,7 +167,6 @@ const Main = () => {
 
   // //POST DATA TO DATABASE
   const postDataHandler = async (userData) => {
-
     try {
       const response = await fetch(
         "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
@@ -190,19 +189,15 @@ const Main = () => {
     }
   };
 
-  // if (itemCount.current === undefined && submitted === true) {
-  //   postDataHandler(userInputData);
-  //   setSubmitted(false);
-  // }
-
-  //if submitted = true post data 
-  if(submitted === true) {
+  if (submitted === true) {
     postDataHandler(userInputData);
     setSubmitted(false);
-
   }
 
-  
+  if (itemRemoved === true) {
+    postDataHandler(userInputData);
+    setItemRemoved(false);
+  }
 
   const handleSelectChange = (event) => {
     setCategorySelected(event.target.value);
