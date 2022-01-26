@@ -85,6 +85,7 @@ const objToArr = (macroData) => {
 const UserItems = (props) => {
   let macroData = props.macroData;
   let onRemove = props.onRemove;
+  let inputAdjusted = props.inputAdjusted
   
   const data = objToArr(macroData);
 
@@ -101,6 +102,7 @@ const UserItems = (props) => {
             return holder;
           })}
           onRemove={onRemove}
+          inputAdjusted={inputAdjusted}
           
         />
       </BreakfastDiv>

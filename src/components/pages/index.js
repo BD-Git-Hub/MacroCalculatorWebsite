@@ -56,6 +56,8 @@ const Main = () => {
   const [displayData, setDisplayData] = useState();
   const [submitted, setSubmitted] = useState(false);
   const [itemRemoved, setItemRemoved] = useState(false);
+  const [itemAdjusted, setItemAdjusted] = useState(false);
+  
 
   const addBtnHandler = (e) => {
     e.preventDefault();
@@ -160,7 +162,7 @@ const Main = () => {
     }
 
     return () => {
-      controller.abort();
+      //controller.abort();
       setUserInputData([]);
     };
   }, [userTokenId]);
@@ -189,6 +191,38 @@ const Main = () => {
     }
   };
 
+  //RETRIEVE DATA FROM DATABASE
+  const retrieveDataHandler = async () => {
+    try {
+      const response = await fetch(
+        "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
+        {
+          method: "GET",
+          signal: controller.signal,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("retrieving data failed");
+      }
+
+      const data = await response.json();
+
+      if (data === null) {
+        setDisplayData(false);
+
+        return;
+      } else {
+        setUserInputData(data);
+        itemCount.current = data.length;
+
+        setDisplayData(true);
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   if (submitted === true) {
     postDataHandler(userInputData);
     setSubmitted(false);
@@ -199,8 +233,28 @@ const Main = () => {
     setItemRemoved(false);
   }
 
+  if (itemAdjusted === true) {
+    retrieveDataHandler();
+    setItemAdjusted(false);
+  }
+
   const handleSelectChange = (event) => {
     setCategorySelected(event.target.value);
+  };
+
+  const inputAdjustedHandler = (prevTitle, titleInput) => {
+    //get the previous userInputData
+
+    //find where title is for that particular item
+    userInputData.map((macroData) => {
+      if (macroData.titleData === prevTitle) {
+        macroData.titleData = titleInput;
+        postDataHandler(userInputData);
+      }
+      return macroData;
+    });
+
+    setItemAdjusted(true);
   };
 
   return (
@@ -255,7 +309,11 @@ const Main = () => {
       <StyledTodoDiv>
         {!displayData && <p>No Data</p>}
         {displayData && (
-          <UserItems macroData={userInputData} onRemove={removeItemHandler} />
+          <UserItems
+            macroData={userInputData}
+            onRemove={removeItemHandler}
+            inputAdjusted={inputAdjustedHandler}
+          />
         )}
       </StyledTodoDiv>
     </Fragment>

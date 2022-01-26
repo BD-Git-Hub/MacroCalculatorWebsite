@@ -1,4 +1,4 @@
-//amend or remove btn for items on the list.
+//amend btn for items on the list.
 
 //load up data for each user.
 
