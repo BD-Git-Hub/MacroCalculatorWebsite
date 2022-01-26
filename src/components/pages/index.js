@@ -257,6 +257,8 @@ const Main = () => {
     setItemAdjusted(true);
   };
 
+  console.log('BEFORE USECALLBACK');
+
   return (
     <Fragment>
       <StyledDiv>
