@@ -57,7 +57,6 @@ const Main = () => {
   const [submitted, setSubmitted] = useState(false);
   const [itemRemoved, setItemRemoved] = useState(false);
   const [itemAdjusted, setItemAdjusted] = useState(false);
-  
 
   const addBtnHandler = (e) => {
     e.preventDefault();
@@ -123,7 +122,7 @@ const Main = () => {
   };
 
   useEffect(() => {
-    let controller = new AbortController();
+    //let controller = new AbortController();
 
     //RETRIEVE DATA FROM DATABASE
     const retrieveDataHandler = async () => {
@@ -132,7 +131,7 @@ const Main = () => {
           "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
           {
             method: "GET",
-            signal: controller.signal,
+            //signal: controller.signal,
           }
         );
 
@@ -162,8 +161,9 @@ const Main = () => {
     }
 
     return () => {
+
       //controller.abort();
-      setUserInputData([]);
+      //setUserInputData([]);
     };
   }, [userTokenId]);
 
@@ -193,6 +193,7 @@ const Main = () => {
 
   //RETRIEVE DATA FROM DATABASE
   const retrieveDataHandler = async () => {
+    console.log('dataRetrieved');
     try {
       const response = await fetch(
         "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
@@ -233,23 +234,20 @@ const Main = () => {
     setItemRemoved(false);
   }
 
-  if (itemAdjusted === true) {
-    retrieveDataHandler();
-    setItemAdjusted(false);
-  }
+  
 
   const handleSelectChange = (event) => {
     setCategorySelected(event.target.value);
   };
 
   const inputAdjustedHandler = (prevTitle, titleInput) => {
-    //get the previous userInputData
 
-    //find where title is for that particular item
     userInputData.map((macroData) => {
       if (macroData.titleData === prevTitle) {
         macroData.titleData = titleInput;
+        
         postDataHandler(userInputData);
+
       }
       return macroData;
     });
@@ -257,7 +255,10 @@ const Main = () => {
     setItemAdjusted(true);
   };
 
-  console.log('BEFORE USECALLBACK');
+  if (itemAdjusted === true) {
+    retrieveDataHandler();
+    setItemAdjusted(false);
+  }
 
   return (
     <Fragment>
