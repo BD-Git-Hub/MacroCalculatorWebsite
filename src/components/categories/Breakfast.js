@@ -14,18 +14,28 @@ const Breakfast = (props) => {
   );
 
   const [intialTitleShown, setIntialTitleShown] = useState(false);
-  const [intialCarbShown, setIntialCarbShown] = useState(false);
+  const [intialCarbsShown, setIntialCarbsShown] = useState(false);
+  const [intialProteinsShown, setIntialProteinsShown] = useState(false);
+  const [intialFatsShown, setIntialFatsShown] = useState(false);
 
   const [titleInput, setTitleInput] = useState();
   const [carbsInput, setCarbsInput] = useState();
+  const [proteinsInput, setProteinsInput] = useState();
+  const [fatsInput, setFatsInput] = useState();
 
   const adjustHandler = (e, category) => {
     if (category === "title") {
       setIntialTitleShown(true);
       setTitleInput(e.target.value);
     } else if (category === "carbs") {
-      setIntialCarbShown(true);
+      setIntialCarbsShown(true);
       setCarbsInput(e.target.value);
+    } else if (category === "proteins") {
+      setIntialProteinsShown(true);
+      setProteinsInput(e.target.value);
+    } else if (category === "fats") {
+      setIntialFatsShown(true);
+      setFatsInput(e.target.value);
     } else {
       return;
     }
@@ -36,8 +46,14 @@ const Breakfast = (props) => {
       inputAdjusted(prevInput, titleInput, id);
     } else if (category === "carbs" && prevInput !== carbsInput) {
       inputAdjusted(prevInput, carbsInput, id);
+    } else if (category === "proteins" && prevInput !== proteinsInput) {
+      inputAdjusted(prevInput, proteinsInput, id);
+    } else if (category === 'fats' && prevInput !== fatsInput) {
+      inputAdjusted(prevInput, fatsInput, id);
+    } else {
+      
+      return;
     }
-    return;
   };
 
   const item = macroData.map((macroData) => {
@@ -64,7 +80,7 @@ const Breakfast = (props) => {
           <p>
             Carbohydrates:
             <input
-              value={!intialCarbShown ? macroData[1] : carbsInput}
+              value={!intialCarbsShown ? macroData[1] : carbsInput}
               onChange={(e) => {
                 adjustHandler(e, "carbs");
               }}
@@ -76,8 +92,36 @@ const Breakfast = (props) => {
               )}
             />
           </p>
-          <p>Proteins:<input value={'#'} onChange={'#'} onBlur={'#'}/></p>
-          <p>Fats:{macroData[3]}</p>
+          <p>
+            Proteins:
+            <input
+              value={!intialProteinsShown ? macroData[2] : proteinsInput}
+              onChange={(e) => {
+                adjustHandler(e, "proteins");
+              }}
+              onBlur={updateHandler.bind(
+                null,
+                macroData[2],
+                macroData[5],
+                "proteins"
+              )}
+            />
+          </p>
+          <p>
+            Fats:
+            <input
+              value={!intialFatsShown ? macroData[3] : fatsInput}
+              onChange={(e) => {
+                adjustHandler(e, "fats");
+              }}
+              onBlur={updateHandler.bind(
+                null,
+                macroData[3],
+                macroData[5],
+                "fats"
+              )}
+            />
+          </p>
           <button onClick={onRemove.bind(null, macroData[5])}>DELETE</button>
         </div>
       </Fragment>

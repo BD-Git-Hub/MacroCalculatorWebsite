@@ -253,6 +253,10 @@ const Main = () => {
           macroData.titleData = input;
         } else if (macroData.carbsData === prevInput) {
           macroData.carbsData = input;
+        } else if (macroData.proteinsData === prevInput) {
+          macroData.proteinsData = input;
+        } else if (macroData.fatsData === prevInput) {
+          macroData.fatsData = input;
         }
         postDataHandler(userInputData);
       }
