@@ -13,20 +13,31 @@ const Breakfast = (props) => {
     </Fragment>
   );
 
-  const [firstShown, setFirstShown] = useState(false);
+  const [intialTitleShown, setIntialTitleShown] = useState(false);
+  const [intialCarbShown, setIntialCarbShown] = useState(false);
+
   const [titleInput, setTitleInput] = useState();
+  const [carbsInput, setCarbsInput] = useState();
 
-  const adjustHandler = (e) => {
-    setFirstShown(true);
-    setTitleInput(e.target.value);
-  };
-
-  const updateInput = (prevTitle) => {
-    if (prevTitle === titleInput) {
+  const adjustHandler = (e, category) => {
+    if (category === "title") {
+      setIntialTitleShown(true);
+      setTitleInput(e.target.value);
+    } else if (category === "carbs") {
+      setIntialCarbShown(true);
+      setCarbsInput(e.target.value);
+    } else {
       return;
     }
-    inputAdjusted(prevTitle, titleInput)
+  };
 
+  const updateHandler = (prevInput, id, category) => {
+    if (category === "title" && prevInput !== titleInput) {
+      inputAdjusted(prevInput, titleInput, id);
+    } else if (category === "carbs" && prevInput !== carbsInput) {
+      inputAdjusted(prevInput, carbsInput, id);
+    }
+    return;
   };
 
   const item = macroData.map((macroData) => {
@@ -37,15 +48,35 @@ const Breakfast = (props) => {
           <p>
             Title:
             <input
-              value={!firstShown ? macroData[0] : titleInput}
-              onChange={adjustHandler}
-              onBlur={updateInput.bind(null, macroData[0])}
+              value={!intialTitleShown ? macroData[0] : titleInput}
+              onChange={(e) => {
+                adjustHandler(e, "title");
+              }}
+              onBlur={updateHandler.bind(
+                null,
+                macroData[0],
+                macroData[5],
+                "title"
+              )} //macroData[0] is titleData from server
             />
           </p>
 
-          <p>Title:{macroData[0]}</p>
-          <p>Carbohydrates:{macroData[1]}</p>
-          <p>Proteins:{macroData[2]}</p>
+          <p>
+            Carbohydrates:
+            <input
+              value={!intialCarbShown ? macroData[1] : carbsInput}
+              onChange={(e) => {
+                adjustHandler(e, "carbs");
+              }}
+              onBlur={updateHandler.bind(
+                null,
+                macroData[1],
+                macroData[5],
+                "carbs"
+              )}
+            />
+          </p>
+          <p>Proteins:<input value={'#'} onChange={'#'} onBlur={'#'}/></p>
           <p>Fats:{macroData[3]}</p>
           <button onClick={onRemove.bind(null, macroData[5])}>DELETE</button>
         </div>

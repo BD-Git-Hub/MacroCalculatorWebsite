@@ -1,4 +1,11 @@
-import { Fragment, useRef, useState, useContext, useEffect } from "react";
+import {
+  Fragment,
+  useRef,
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+} from "react";
 import styled from "styled-components";
 import { authContext } from "../context/AuthContext";
 import UserItems from "../userItems/UserItems";
@@ -121,52 +128,6 @@ const Main = () => {
     setItemRemoved(true);
   };
 
-  useEffect(() => {
-    //let controller = new AbortController();
-
-    //RETRIEVE DATA FROM DATABASE
-    const retrieveDataHandler = async () => {
-      try {
-        const response = await fetch(
-          "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
-          {
-            method: "GET",
-            //signal: controller.signal,
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("retrieving data failed");
-        }
-
-        const data = await response.json();
-
-        if (data === null) {
-          setDisplayData(false);
-
-          return;
-        } else {
-          setUserInputData(data);
-          itemCount.current = data.length;
-
-          setDisplayData(true);
-        }
-      } catch (error) {
-        alert(error);
-      }
-    };
-
-    if (userTokenId) {
-      retrieveDataHandler();
-    }
-
-    return () => {
-
-      //controller.abort();
-      //setUserInputData([]);
-    };
-  }, [userTokenId]);
-
   // //POST DATA TO DATABASE
   const postDataHandler = async (userData) => {
     try {
@@ -184,7 +145,6 @@ const Main = () => {
       if (!response.ok) {
         throw new Error("response failed!");
       }
-
       setDisplayData(true);
     } catch (error) {
       alert(error);
@@ -192,14 +152,12 @@ const Main = () => {
   };
 
   //RETRIEVE DATA FROM DATABASE
-  const retrieveDataHandler = async () => {
-    console.log('dataRetrieved');
+  const retrieveDataHandler = useCallback(async () => {
     try {
       const response = await fetch(
         "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
         {
           method: "GET",
-          signal: controller.signal,
         }
       );
 
@@ -222,33 +180,83 @@ const Main = () => {
     } catch (error) {
       alert(error);
     }
-  };
+  }, []);
 
-  if (submitted === true) {
-    postDataHandler(userInputData);
-    setSubmitted(false);
-  }
+  useEffect(() => {
+    //let controller = new AbortController();
+
+    //RETRIEVE DATA FROM DATABASE
+    // const retrieveDataHandler = async () => {
+    //   try {
+    //     const response = await fetch(
+    //       "https://react-http-735ad-default-rtdb.europe-west1.firebasedatabase.app/macros.json",
+    //       {
+    //         method: "GET",
+    //         //signal: controller.signal,
+    //       }
+    //     );
+
+    //     if (!response.ok) {
+    //       throw new Error("retrieving data failed");
+    //     }
+
+    //     const data = await response.json();
+
+    //     if (data === null) {
+    //       setDisplayData(false);
+
+    //       return;
+    //     } else {
+    //       setUserInputData(data);
+    //       itemCount.current = data.length;
+
+    //       setDisplayData(true);
+    //     }
+    //   } catch (error) {
+    //     alert(error);
+    //   }
+    // };
+
+    if (userTokenId) {
+      retrieveDataHandler();
+    }
+
+    return () => {
+      //controller.abort();
+      //setUserInputData([]);
+    };
+  }, [userTokenId, retrieveDataHandler]);
 
   if (itemRemoved === true) {
     postDataHandler(userInputData);
     setItemRemoved(false);
   }
 
-  
+  if (submitted === true) {
+    postDataHandler(userInputData);
+    setSubmitted(false);
+  }
 
   const handleSelectChange = (event) => {
     setCategorySelected(event.target.value);
   };
 
-  const inputAdjustedHandler = (prevTitle, titleInput) => {
+  const inputAdjustedHandler = (prevInput, input, id) => {
+    // console.log(userInputData)
+    // console.log(prevInput)
+    // console.log(input)
+    // console.log(id)
 
     userInputData.map((macroData) => {
-      if (macroData.titleData === prevTitle) {
-        macroData.titleData = titleInput;
-        
+      if (macroData.id === id) {
+        if (macroData.titleData === prevInput) {
+          macroData.titleData = input;
+        } else if (macroData.carbsData === prevInput) {
+          macroData.carbsData = input;
+        }
         postDataHandler(userInputData);
-
       }
+
       return macroData;
     });
 

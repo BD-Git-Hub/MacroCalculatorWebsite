@@ -2,3 +2,7 @@
 
 //load up data for each user.
 
+
+//make inputAdjustedHandler more efficent with finding key and passing type which type 
+//of data it is eg: carbs, protein, fats, title etc. which can be used for sorting instead of 
+//multiple if statments.
