@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import styled from "styled-components";
-import Breakfast from "../categories/Breakfast";
+import Breakfast from "../categories/BreakfastItemSection";
 import Lunch from "../categories/Lunch";
 import Dinner from "../categories/Dinner";
 import Snacks from "../categories/Snacks";
