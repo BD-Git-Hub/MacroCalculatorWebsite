@@ -4,3 +4,12 @@
 
 
 //submitting more items of same category casuses slight issues with overriding of previous category items.
+
+//if input field empty then reset to previous input field info.
+
+
+//styling the website
+
+//secondary animations
+
+//web accessibility. 
