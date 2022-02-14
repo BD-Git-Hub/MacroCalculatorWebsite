@@ -5,6 +5,7 @@ const Breakfast = (props) => {
   let onRemove = props.onRemove;
   let macroData = props.data;
   let inputAdjusted = props.inputAdjusted;
+
   let userItemTemplate = (
     <Fragment>
       <p>Title:</p>
@@ -13,15 +14,6 @@ const Breakfast = (props) => {
       <p>Fats:</p>
     </Fragment>
   );
-
-
-  
-
-  
-  
-
-  
-
 
   const item = macroData.map((macroData) => {
     let holder = "";
@@ -33,8 +25,8 @@ const Breakfast = (props) => {
             <BreakfastItemSection
               value={macroData[0]}
               inputAdjusted={inputAdjusted}
-              id={macroData[5]} 
-              categoryInput={'title'}
+              id={macroData[5]}
+              categoryInput={"title"}
             />
           </p>
 
@@ -44,17 +36,17 @@ const Breakfast = (props) => {
               value={macroData[1]}
               inputAdjusted={inputAdjusted}
               id={macroData[5]}
-              categoryInput={'carbs'}
+              categoryInput={"carbs"}
             />
           </p>
-          <p>Proteins:
-          <BreakfastItemSection
+          <p>
+            Proteins:
+            <BreakfastItemSection
               value={macroData[2]}
               inputAdjusted={inputAdjusted}
               id={macroData[5]}
-              categoryInput={'proteins'}
+              categoryInput={"proteins"}
             />
-
           </p>
           <p>
             Fats:
@@ -62,7 +54,7 @@ const Breakfast = (props) => {
               value={macroData[3]}
               inputAdjusted={inputAdjusted}
               id={macroData[5]}
-              categoryInput={'fats'}
+              categoryInput={"fats"}
             />
           </p>
           <button onClick={onRemove.bind(null, macroData[5])}>DELETE</button>

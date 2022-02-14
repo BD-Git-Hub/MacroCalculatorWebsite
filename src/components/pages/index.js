@@ -146,6 +146,8 @@ const Main = () => {
         throw new Error("response failed!");
       }
       setDisplayData(true);
+      setItemAdjusted(true);
+
     } catch (error) {
       alert(error);
     }
@@ -237,15 +239,20 @@ const Main = () => {
     setSubmitted(false);
   }
 
+  if(itemAdjusted === true) {
+
+    retrieveDataHandler();
+    setItemAdjusted(false);
+
+
+  }
+
   const handleSelectChange = (event) => {
     setCategorySelected(event.target.value);
   };
 
-  const inputAdjustedHandler = (prevInput, input, id) => {
-    // console.log(userInputData)
-    // console.log(prevInput)
-    // console.log(input)
-    // console.log(id)
+  const inputAdjustedHandler = (prevInput, input, id, categoryInput) => {
+    
 
     userInputData.map((macroData) => {
       if (macroData.id === id) {
@@ -259,18 +266,13 @@ const Main = () => {
           macroData.fatsData = input;
         }
         postDataHandler(userInputData);
+        
       }
 
       return macroData;
     });
 
-    setItemAdjusted(true);
   };
-
-  if (itemAdjusted === true) {
-    retrieveDataHandler();
-    setItemAdjusted(false);
-  }
 
   return (
     <Fragment>
