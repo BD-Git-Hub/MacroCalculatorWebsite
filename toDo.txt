@@ -1,15 +1,29 @@
-//amend btn for items on the list.
-
-//load up data for each user.
 
 
-//submitting more items of same category casuses slight issues with overriding of previous category items.
 
-//if input field empty then reset to previous input field info.
 
+
+
+
+https://itnext.io/3-ways-to-implement-responsive-design-in-your-react-app-bcb6ee7eb424
 
 //styling the website
+
+//web responsiveness 
+
+
 
 //secondary animations
 
 //web accessibility. 
+
+//load up data for each user.
+
+
+
+
+#393E46 //transaparent Grey
+#808080 //grey
+#00ADB5 //blue
+#222831 //darkgrey
+#EEEEEE //White

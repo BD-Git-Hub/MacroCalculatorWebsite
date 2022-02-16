@@ -2,7 +2,6 @@ import { Bars, Nav, NavBtn, NavMenu, NavLink } from "./NavbarElements";
 import Auth from "./Auth";
 import React, { useContext } from "react";
 import { authContext } from "../context/AuthContext";
-import Profile from "./Profile";
 import Logout from "./Logout";
 
 const Navbar = () => {
@@ -16,7 +15,7 @@ const Navbar = () => {
         <NavBtn>
           <Logout />
         </NavBtn>
-        <Profile />
+        
       </React.Fragment>
     );
   }

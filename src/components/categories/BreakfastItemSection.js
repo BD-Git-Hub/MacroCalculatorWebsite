@@ -1,5 +1,17 @@
 import React, { Fragment } from "react";
 import BreakfastItemSection from "./BreakfastItem";
+import styled from "styled-components";
+
+const StyledDiv = styled.div`
+
+background: #393E46;
+
+
+`;
+
+const StyledP = styled.p`
+  color: #eeeeee;
+`;
 
 const Breakfast = (props) => {
   let onRemove = props.onRemove;
@@ -8,10 +20,10 @@ const Breakfast = (props) => {
 
   let userItemTemplate = (
     <Fragment>
-      <p>Title:</p>
-      <p>Carbohydrates:</p>
-      <p>Proteins:</p>
-      <p>Fats:</p>
+      <StyledP>Title:</StyledP>
+      <StyledP>Carbohydrates:</StyledP>
+      <StyledP>Proteins:</StyledP>
+      <StyledP>Fats:</StyledP>
     </Fragment>
   );
 
@@ -19,8 +31,8 @@ const Breakfast = (props) => {
     let holder = "";
     holder = (
       <Fragment key={macroData[5]}>
-        <div>
-          <p>
+        <StyledDiv>
+          <StyledP>
             Title:
             <BreakfastItemSection
               value={macroData[0]}
@@ -28,9 +40,9 @@ const Breakfast = (props) => {
               id={macroData[5]}
               categoryInput={"title"}
             />
-          </p>
+          </StyledP>
 
-          <p>
+          <StyledP>
             Carbohydrates:
             <BreakfastItemSection
               value={macroData[1]}
@@ -38,8 +50,8 @@ const Breakfast = (props) => {
               id={macroData[5]}
               categoryInput={"carbs"}
             />
-          </p>
-          <p>
+          </StyledP>
+          <StyledP>
             Proteins:
             <BreakfastItemSection
               value={macroData[2]}
@@ -47,8 +59,8 @@ const Breakfast = (props) => {
               id={macroData[5]}
               categoryInput={"proteins"}
             />
-          </p>
-          <p>
+          </StyledP>
+          <StyledP>
             Fats:
             <BreakfastItemSection
               value={macroData[3]}
@@ -56,9 +68,9 @@ const Breakfast = (props) => {
               id={macroData[5]}
               categoryInput={"fats"}
             />
-          </p>
+          </StyledP>
           <button onClick={onRemove.bind(null, macroData[5])}>DELETE</button>
-        </div>
+        </StyledDiv>
       </Fragment>
     );
     return holder;

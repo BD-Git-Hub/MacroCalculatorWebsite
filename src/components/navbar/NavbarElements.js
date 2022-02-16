@@ -2,8 +2,16 @@ import { FaBars } from "react-icons/fa";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 
+const media = {
+  largeDesktop: '@media (min-width: 1200px)',
+  desktop: '@media (min-width: 992px)',
+  tablet: '@media (max-width: 768px)',
+  phone: '@media(min-width: 576px)'
+
+}
+
 export const Nav = styled.nav`
-  background: #63D471;
+  background: #222831;
   height: 85px;
   display: flex;
   justify-content: space-between;
@@ -14,22 +22,28 @@ export const Nav = styled.nav`
 `;
   
 export const NavLink = styled(Link)`
-  color: #808080;
+  color: #EEEEEE;
+  background: #393E46;
   display: flex;
   align-items: center;
   text-decoration: none;
-  padding: 0 1rem;
-  height: 100%;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  border-radius: 1rem;
+  
   cursor: pointer;
   &.active {
-    color: #000000;
+    color: #00ADB5;
   }
+  
 `;
   
 export const Bars = styled(FaBars)`
   display: none;
   color: #808080;
-  @media screen and (max-width: 768px) {
+
+  ${media.tablet} {
+
     display: block;
     position: absolute;
     top: 0;
@@ -37,8 +51,16 @@ export const Bars = styled(FaBars)`
     transform: translate(-100%, 75%);
     font-size: 1.8rem;
     cursor: pointer;
+
   }
+
+
+  
+
+
 `;
+
+
   
 export const NavMenu = styled.div`
   display: flex;
@@ -68,7 +90,7 @@ export const NavBtn = styled.nav`
   
 export const NavBtnLink = styled(Link)`
   border-radius: 4px;
-  background: #808080;
+  background: #EEEEEE;
   padding: 10px 22px;
   color: #000000;
   outline: none;
@@ -84,6 +106,66 @@ export const NavBtnLink = styled(Link)`
     color: #808080;
   }
 `;
+
+export const StyledButton = styled.button`
+
+color: #EEEEEE;
+background: #393E46;
+border-radius: 1rem;
+padding: 0.5rem;
+margin: 0.2rem;
+
+
+cursor: pointer;
+  &:hover {
+    color: #00ADB5;
+  }
+
+
+`;
+
+export const StyledPropsbutton = styled.button`
+
+margin: 0.2rem;
+background: #393E46;
+color: #808080;
+color: ${(props) => (props.disabledFontColor ? '#00ADB5' : "#808080")};
+
+border-radius: 0.1rem;
+
+#808080 //grey
+#00ADB5 //blue
+#222831 //darkgrey
+
+
+`;
+
+export const StyledLabel = styled.label`
+
+color: #EEEEEE;
+margin: 0.2rem;
+padding: 0.5rem;
+
+
+
+`;
+
+
+export const StyledUserInput = styled.input`
+  border: 0.1rem solid ${(props) => (props.focusColor ? "red" : "grey")};
+  &:focus {
+    box-shadow 0 0 10px #00ADB5;
+  }
+`;
+
+export const StyledPasswordInput = styled.input`
+  border: 0.1rem solid ${(props) => (props.focusColor ? "red" : "grey")};
+  &:focus {
+    box-shadow 0 0 10px #00ADB5;
+  }
+`;
+
+
 
 
 

@@ -1,12 +1,16 @@
 import React, { useContext } from "react";
 import { authContext } from "../context/AuthContext";
 
+import { StyledButton } from "./NavbarElements";
+
+
+
 const Logout = () => {
   const authCtx = useContext(authContext);
 
   return (
     <div>
-      <button onClick={authCtx.logout}>Log Out</button>
+      <StyledButton onClick={authCtx.logout}>Log Out</StyledButton>
     </div>
   );
 };

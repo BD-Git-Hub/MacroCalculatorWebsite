@@ -1,62 +1,17 @@
 import { Fragment } from "react";
-import styled from "styled-components";
 import Breakfast from "../categories/BreakfastItemSection";
 import Lunch from "../categories/Lunch";
 import Dinner from "../categories/Dinner";
 import Snacks from "../categories/Snacks";
 
-const StyledDiv = styled.div`
-  background-color: grey;
-  width: 100%;
-  text-align: center;
-`;
-
-const BreakfastDiv = styled.div`
-  display: inline-block;
-  background-color: red;
-  max-width: 25%;
-  padding: 0 2% 0 2%;
-  height: 20rem;
-  width: 20rem;
-  margin: 0 2% 0 2%;
-`;
-
-const LunchDiv = styled.div`
-  display: inline-block;
-  background-color: red;
-  max-width: 25%;
-  padding: 0 2% 0 2%;
-  height: 20rem;
-  width: 20rem;
-  margin: 0 2% 0 2%;
-`;
-
-const DinnerDiv = styled.div`
-  display: inline-block;
-  background-color: red;
-  max-width: 25%;
-  padding: 0 2% 0 2%;
-  height: 20rem;
-  width: 20rem;
-  margin: 0 2% 0 2%;
-`;
-
-const SnacksDiv = styled.div`
-  display: inline-block;
-  background-color: red;
-  max-width: 25%;
-  padding: 0 2% 0 2%;
-  height: 20rem;
-  width: 20rem;
-  margin: 0 2% 0 2%;
-`;
-
-const Styledh1 = styled.h1`
-  text-decoration: underline;
-  text-transform: uppercase;
-`;
-
-
+import {
+  StyledDiv,
+  BreakfastDiv,
+  LunchDiv,
+  DinnerDiv,
+  SnacksDiv,
+  Styledh1,
+} from "./UserItemsElements";
 
 const objToArr = (macroData) => {
   const arr = macroData.map((macroData) => {
@@ -85,8 +40,8 @@ const objToArr = (macroData) => {
 const UserItems = (props) => {
   let macroData = props.macroData;
   let onRemove = props.onRemove;
-  let inputAdjusted = props.inputAdjusted
-  
+  let inputAdjusted = props.inputAdjusted;
+
   const data = objToArr(macroData);
 
   let categoryTemplate = (
@@ -103,7 +58,6 @@ const UserItems = (props) => {
           })}
           onRemove={onRemove}
           inputAdjusted={inputAdjusted}
-          
         />
       </BreakfastDiv>
       <LunchDiv>

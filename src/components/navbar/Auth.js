@@ -1,16 +1,10 @@
 import React, { useContext, useState } from "react";
-import styled from "styled-components";
 import { authContext } from "../context/AuthContext";
+import { StyledPropsbutton, StyledLabel, StyledUserInput, StyledPasswordInput } from './NavbarElements'
 
-const Styledbutton = styled.button``;
 
-const StyledUserInput = styled.input`
-  border: 0.1rem solid ${(props) => (props.focusColor ? "red" : "grey")};
-`;
 
-const StyledPasswordInput = styled.input`
-  border: 0.1rem solid ${(props) => (props.focusColor ? "red" : "grey")};
-`;
+
 
 const Auth = () => {
   const authCtx = useContext(authContext);
@@ -88,7 +82,7 @@ const Auth = () => {
 
   return (
     <form onSubmit={signInHandler}>
-      <label htmlFor="username">Username</label>
+      <StyledLabel htmlFor="username">Username</StyledLabel>
       <StyledUserInput
         focusColor={emptyUsername}
         type="text"
@@ -96,7 +90,7 @@ const Auth = () => {
         onChange={(e) => setEnteredUsername(e.target.value)}
         onBlur={blurValidUserInputHandler}
       ></StyledUserInput>
-      <label htmlFor="password">Password</label>
+      <StyledLabel htmlFor="password">Password</StyledLabel>
       <StyledPasswordInput
         focusColor={emptyPassword}
         onBlur={blurValidPasswordInputHandler}
@@ -104,13 +98,15 @@ const Auth = () => {
         value={enteredPassword}
         onChange={(e) => setEnteredPassword(e.target.value)}
       ></StyledPasswordInput>
-      <Styledbutton
+      <StyledPropsbutton
+
+        disabledFontColor={validUserNameAndPassword}
         type="submit"
         disabled={!validUserNameAndPassword}
         onClick={loginHandler}
       >
         Sign In
-      </Styledbutton>
+      </StyledPropsbutton>
     </form>
   );
 };

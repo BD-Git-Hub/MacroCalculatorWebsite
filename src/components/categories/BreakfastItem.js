@@ -8,7 +8,6 @@ const BreakfastItemSection = (props) => {
 
   const [intialShown, setIntialShown] = useState(false);
   const [input, setInput] = useState(prevInput);
-  
 
   const usePrevious = (value) => {
     const ref = useRef();
@@ -20,7 +19,6 @@ const BreakfastItemSection = (props) => {
 
   const previousInput = usePrevious(input);
 
-
   const changeHandler = (e) => {
     const input = e.target.value;
     setIntialShown(true);
@@ -28,22 +26,13 @@ const BreakfastItemSection = (props) => {
   };
 
   const updateHandler = (prevInput, id, categoryInput) => {
-
-    
     if (input === "") {
-    
       setInput(previousInput);
-
     } else if (input !== prevInput && input !== "") {
-
       inputAdjusted(prevInput, input, id, categoryInput);
-      
     } else if (input === prevInput) {
-    
       return;
-
     }
-     
   };
 
   return (

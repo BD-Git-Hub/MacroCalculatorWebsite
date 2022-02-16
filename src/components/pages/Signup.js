@@ -1,12 +1,7 @@
-import styled from "styled-components";
 import { useRef, useState } from "react";
+import { StyledDivFlex } from "./PagesElements";
 
-const StyledDiv = styled.div`
-        display: 'flex',
-        justifyContent: 'Right',
-        alignItems: 'Right',
-        height: '100vh'
-`;
+
 
 const SignUp = () => {
   const emailRef = useRef();
@@ -64,7 +59,7 @@ const SignUp = () => {
   };
 
   return (
-    <StyledDiv>
+    <StyledDivFlex>
       <h1>Sign up Page</h1>
       <form onSubmit={submitHandler}>
         <label>email: </label>
@@ -76,7 +71,7 @@ const SignUp = () => {
         {!isLoading && <button type="submit">Create Account</button>}
         {isLoading && <p>Loading...</p>}
       </form>
-    </StyledDiv>
+    </StyledDivFlex>
   );
 };
 

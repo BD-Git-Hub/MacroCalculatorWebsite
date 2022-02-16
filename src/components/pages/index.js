@@ -6,40 +6,15 @@ import {
   useEffect,
   useCallback,
 } from "react";
-import styled from "styled-components";
 import { authContext } from "../context/AuthContext";
 import UserItems from "../userItems/UserItems";
-
-const StyledDiv = styled.div`
-  background-color: red;
-  width: 100%;
-  margin: 0 auto;
-`;
-
-const StyledInput = styled.input`
-  width: 15%;
-  padding: 2rem 3rem;
-  box-sizing: border-box;
-  margin-left 3rem;
-`;
-
-const StyledInputButton = styled.input.attrs({
-  type: "submit",
-  value: "SUBMIT",
-})`
-  width: 15%;
-  padding: 2rem 3rem;
-  margin-left: 1rem;
-`;
-
-const Styledh1 = styled.h1`
-  text-align: center;
-  font-size: 3rem;
-`;
-
-const StyledTodoDiv = styled.div`
-  background-color: #d4f1f4;
-`;
+import {
+  StyledDiv,
+  StyledInput,
+  StyledInputButton,
+  StyledTodoDiv,
+  StyledLabel,
+} from "./PagesElements";
 
 const Main = () => {
   const authCtx = useContext(authContext);
@@ -147,7 +122,6 @@ const Main = () => {
       }
       setDisplayData(true);
       setItemAdjusted(true);
-
     } catch (error) {
       alert(error);
     }
@@ -239,12 +213,9 @@ const Main = () => {
     setSubmitted(false);
   }
 
-  if(itemAdjusted === true) {
-
+  if (itemAdjusted === true) {
     retrieveDataHandler();
     setItemAdjusted(false);
-
-
   }
 
   const handleSelectChange = (event) => {
@@ -252,8 +223,6 @@ const Main = () => {
   };
 
   const inputAdjustedHandler = (prevInput, input, id, categoryInput) => {
-    
-
     userInputData.map((macroData) => {
       if (macroData.id === id) {
         if (macroData.titleData === prevInput) {
@@ -266,19 +235,17 @@ const Main = () => {
           macroData.fatsData = input;
         }
         postDataHandler(userInputData);
-        
       }
 
       return macroData;
     });
-
   };
 
   return (
     <Fragment>
       <StyledDiv>
         <form onSubmit={addBtnHandler}>
-          <label htmlFor="macroTitle">Title</label>
+          <StyledLabel htmlFor="macroTitle">Title</StyledLabel>
           <StyledInput
             type="text"
             ref={titleRef}
@@ -286,7 +253,7 @@ const Main = () => {
             onChange={(e) => setTitleInput(e.target.value)}
             name="macroTitle"
           />
-          <label htmlFor="carbohydrateTitle">Carbohydrates:</label>
+          <StyledLabel htmlFor="carbohydrateTitle">Carbohydrates:</StyledLabel>
           <StyledInput
             type="text"
             ref={carbRef}
@@ -294,7 +261,7 @@ const Main = () => {
             onChange={(e) => setCarbInput(e.target.value)}
             name="carbohydrateTitle"
           />
-          <label htmlFor="proteinTitle">proteins:</label>
+          <StyledLabel htmlFor="proteinTitle">proteins:</StyledLabel>
           <StyledInput
             type="text"
             ref={proteinRef}
@@ -302,7 +269,7 @@ const Main = () => {
             onChange={(e) => setProteinInput(e.target.value)}
             name="proteinTitle"
           />
-          <label htmlFor="proteinTitle">Fats:</label>
+          <StyledLabel htmlFor="proteinTitle">Fats:</StyledLabel>
           <StyledInput
             type="text"
             ref={fatsRef}
@@ -310,7 +277,7 @@ const Main = () => {
             onChange={(e) => setFatsInput(e.target.value)}
             name="proteinTitle"
           />
-          <label htmlFor="category">Category:</label>
+          <StyledLabel htmlFor="category">Category:</StyledLabel>
           <select value={categorySelected} onChange={handleSelectChange}>
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
@@ -320,8 +287,6 @@ const Main = () => {
 
           <StyledInputButton />
         </form>
-
-        <Styledh1>MacroCalculator:</Styledh1>
       </StyledDiv>
       <StyledTodoDiv>
         {!displayData && <p>No Data</p>}
