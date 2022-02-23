@@ -11,9 +11,10 @@ import UserItems from "../userItems/UserItems";
 import {
   StyledDiv,
   StyledInput,
-  StyledInputButton,
+  StyledSubmitButton,
   StyledTodoDiv,
   StyledLabel,
+  StyledSelect,
 } from "./PagesElements";
 
 const Main = () => {
@@ -244,49 +245,56 @@ const Main = () => {
   return (
     <Fragment>
       <StyledDiv>
+         
         <form onSubmit={addBtnHandler}>
-          <StyledLabel htmlFor="macroTitle">Title</StyledLabel>
-          <StyledInput
-            type="text"
-            ref={titleRef}
-            value={titleInput}
-            onChange={(e) => setTitleInput(e.target.value)}
-            name="macroTitle"
-          />
-          <StyledLabel htmlFor="carbohydrateTitle">Carbohydrates:</StyledLabel>
-          <StyledInput
-            type="text"
-            ref={carbRef}
-            value={carbInput}
-            onChange={(e) => setCarbInput(e.target.value)}
-            name="carbohydrateTitle"
-          />
-          <StyledLabel htmlFor="proteinTitle">proteins:</StyledLabel>
-          <StyledInput
-            type="text"
-            ref={proteinRef}
-            value={proteinInput}
-            onChange={(e) => setProteinInput(e.target.value)}
-            name="proteinTitle"
-          />
-          <StyledLabel htmlFor="proteinTitle">Fats:</StyledLabel>
-          <StyledInput
-            type="text"
-            ref={fatsRef}
-            value={fatsInput}
-            onChange={(e) => setFatsInput(e.target.value)}
-            name="proteinTitle"
-          />
-          <StyledLabel htmlFor="category">Category:</StyledLabel>
-          <select value={categorySelected} onChange={handleSelectChange}>
-            <option value="breakfast">Breakfast</option>
-            <option value="lunch">Lunch</option>
-            <option value="dinner">Dinner</option>
-            <option value="snack">Snack</option>
-          </select>
+            <StyledLabel htmlFor="category">Category:</StyledLabel>
+            <StyledSelect
+              value={categorySelected}
+              onChange={handleSelectChange}
+            >
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+              <option value="snack">Snack</option>
+            </StyledSelect>
+            <StyledLabel htmlFor="macroTitle">Title:</StyledLabel>
+            <StyledInput
+              type="text"
+              ref={titleRef}
+              value={titleInput}
+              onChange={(e) => setTitleInput(e.target.value)}
+              name="macroTitle"
+            />
+            <StyledLabel htmlFor="carbohydrateTitle">
+              Carbohydrates:
+            </StyledLabel>
+            <StyledInput
+              type="text"
+              ref={carbRef}
+              value={carbInput}
+              onChange={(e) => setCarbInput(e.target.value)}
+              name="carbohydrateTitle"
+            />
+            <StyledLabel htmlFor="proteinTitle">proteins:</StyledLabel>
+            <StyledInput
+              type="text"
+              ref={proteinRef}
+              value={proteinInput}
+              onChange={(e) => setProteinInput(e.target.value)}
+              name="proteinTitle"
+            />
+            <StyledLabel htmlFor="proteinTitle">Fats:</StyledLabel>
+            <StyledInput
+              type="text"
+              ref={fatsRef}
+              value={fatsInput}
+              onChange={(e) => setFatsInput(e.target.value)}
+              name="proteinTitle"
+            />
 
-          <StyledInputButton />
+            <StyledSubmitButton />
         </form>
+          
       </StyledDiv>
       <StyledTodoDiv>
         {!displayData && <p>No Data</p>}

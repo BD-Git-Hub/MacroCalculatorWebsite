@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { authContext } from "../context/AuthContext";
-import { StyledPropsbutton, StyledLabel, StyledUserInput, StyledPasswordInput } from './NavbarElements'
+import { StyledPropsbutton, StyledLabel, StyledUserInput, StyledPasswordInput, StyledForm } from './NavbarElements'
 
 
 
@@ -81,7 +81,7 @@ const Auth = () => {
   };
 
   return (
-    <form onSubmit={signInHandler}>
+    <StyledForm onSubmit={signInHandler}>
       <StyledLabel htmlFor="username">Username</StyledLabel>
       <StyledUserInput
         focusColor={emptyUsername}
@@ -107,7 +107,7 @@ const Auth = () => {
       >
         Sign In
       </StyledPropsbutton>
-    </form>
+    </StyledForm>
   );
 };
 

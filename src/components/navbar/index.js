@@ -9,7 +9,14 @@ const Navbar = () => {
 
   let context = <Auth />;
 
+  let border = false;
+
+ 
+
+
+
   if (authCtx.isLoggedIn) {
+    border = true;
     context = (
       <React.Fragment>
         <NavBtn>
@@ -18,10 +25,12 @@ const Navbar = () => {
         
       </React.Fragment>
     );
+  } else {
+    border = false;
   }
 
   return (
-    <Nav>
+    <Nav borderDisplay={border}>
       <Bars />
       <NavMenu>
         <NavLink to="/about">About</NavLink>

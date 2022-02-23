@@ -2,13 +2,16 @@ import styled from 'styled-components';
 
 
 export const StyledDiv = styled.div`
-  background-color: #222831;
+  //background-color: #222831;
+  background-color: green;
   width: 100%;
   text-align: center;
+
+  
 `;
 
 export const BreakfastDiv = styled.div`
-  display: inline-block;
+  
   max-width: 25%;
   padding: 0 2% 0 2%;
   height: 20rem;
@@ -18,7 +21,7 @@ export const BreakfastDiv = styled.div`
 `;
 
 export const LunchDiv = styled.div`
-  display: inline-block;
+  
   max-width: 25%;
   padding: 0 2% 0 2%;
   height: 20rem;
@@ -27,7 +30,7 @@ export const LunchDiv = styled.div`
 `;
 
 export const DinnerDiv = styled.div`
-  display: inline-block;
+  
 
   max-width: 25%;
   padding: 0 2% 0 2%;
@@ -37,7 +40,7 @@ export const DinnerDiv = styled.div`
 `;
 
 export const SnacksDiv = styled.div`
-  display: inline-block;
+ 
 
   max-width: 25%;
   padding: 0 2% 0 2%;
@@ -47,7 +50,7 @@ export const SnacksDiv = styled.div`
 `;
 
 export const Styledh1 = styled.h1`
-  text-decoration: underline;
+  
   text-transform: uppercase;
   color: #eeeeee;
 `;
