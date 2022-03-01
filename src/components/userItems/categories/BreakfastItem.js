@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState, useRef } from "react";
+import { StyledCategoryItemInput} from '../UserItemsElements'
 
 const BreakfastItemSection = (props) => {
   const prevInput = props.value;
@@ -37,7 +38,7 @@ const BreakfastItemSection = (props) => {
 
   return (
     <Fragment>
-      <input
+      <StyledCategoryItemInput
         value={!intialShown ? prevInput : input}
         onChange={(e) => {
           changeHandler(e);

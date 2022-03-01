@@ -1,17 +1,7 @@
 import React, { Fragment } from "react";
 import BreakfastItemSection from "./BreakfastItem";
-import styled from "styled-components";
 
-const StyledDiv = styled.div`
-
-background: #393E46;
-
-
-`;
-
-const StyledP = styled.p`
-  color: #eeeeee;
-`;
+import { StyledCategoryP, StyledCategoryDiv, StyledCategoryDeleteBtn } from "../UserItemsElements";
 
 const Breakfast = (props) => {
   let onRemove = props.onRemove;
@@ -20,10 +10,10 @@ const Breakfast = (props) => {
 
   let userItemTemplate = (
     <Fragment>
-      <StyledP>Title:</StyledP>
-      <StyledP>Carbohydrates:</StyledP>
-      <StyledP>Proteins:</StyledP>
-      <StyledP>Fats:</StyledP>
+      <StyledCategoryP>Title:</StyledCategoryP>
+      <StyledCategoryP>Carbohydrates:</StyledCategoryP>
+      <StyledCategoryP>Proteins:</StyledCategoryP>
+      <StyledCategoryP>Fats:</StyledCategoryP>
     </Fragment>
   );
 
@@ -31,8 +21,8 @@ const Breakfast = (props) => {
     let holder = "";
     holder = (
       <Fragment key={macroData[5]}>
-        <StyledDiv>
-          <StyledP>
+        <StyledCategoryDiv>
+          <StyledCategoryP>
             Title:
             <BreakfastItemSection
               value={macroData[0]}
@@ -40,9 +30,9 @@ const Breakfast = (props) => {
               id={macroData[5]}
               categoryInput={"title"}
             />
-          </StyledP>
+          </StyledCategoryP>
 
-          <StyledP>
+          <StyledCategoryP>
             Carbohydrates:
             <BreakfastItemSection
               value={macroData[1]}
@@ -50,8 +40,8 @@ const Breakfast = (props) => {
               id={macroData[5]}
               categoryInput={"carbs"}
             />
-          </StyledP>
-          <StyledP>
+          </StyledCategoryP>
+          <StyledCategoryP>
             Proteins:
             <BreakfastItemSection
               value={macroData[2]}
@@ -59,8 +49,8 @@ const Breakfast = (props) => {
               id={macroData[5]}
               categoryInput={"proteins"}
             />
-          </StyledP>
-          <StyledP>
+          </StyledCategoryP>
+          <StyledCategoryP>
             Fats:
             <BreakfastItemSection
               value={macroData[3]}
@@ -68,9 +58,9 @@ const Breakfast = (props) => {
               id={macroData[5]}
               categoryInput={"fats"}
             />
-          </StyledP>
-          <button onClick={onRemove.bind(null, macroData[5])}>DELETE</button>
-        </StyledDiv>
+          </StyledCategoryP>
+          <StyledCategoryDeleteBtn onClick={onRemove.bind(null, macroData[5])}>DELETE</StyledCategoryDeleteBtn>
+        </StyledCategoryDiv>
       </Fragment>
     );
     return holder;

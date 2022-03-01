@@ -1,8 +1,8 @@
 import { Fragment } from "react";
-import Breakfast from "../categories/BreakfastItemSection";
-import Lunch from "../categories/Lunch";
-import Dinner from "../categories/Dinner";
-import Snacks from "../categories/Snacks";
+import Breakfast from "./categories/BreakfastItemSection";
+import Lunch from "./categories/Lunch";
+import Dinner from "./categories/Dinner";
+import Snacks from "./categories/Snacks";
 
 import {
   StyledDiv,
@@ -70,6 +70,8 @@ const UserItems = (props) => {
             }
             return holder;
           })}
+          onRemove={onRemove}
+          inputAdjusted={inputAdjusted}
         />
       </LunchDiv>
       <DinnerDiv>
@@ -98,15 +100,6 @@ const UserItems = (props) => {
       </SnacksDiv>
     </StyledDiv>
   );
-
-  // const data = macroData.map((macroData) => (
-  //   <div onClick={props.onRemove.bind(null, macroData.key)} key={macroData.id}>
-  //     <p>Title:{macroData.titleData}</p>
-  //     <p>Carbohydrates:{macroData.carbsData}</p>
-  //     <p>Proteins:{macroData.proteinsData}</p>
-  //     <p>Fats:{macroData.fatsData}</p>
-  //   </div>
-  // ));
 
   return <Fragment>{categoryTemplate}</Fragment>;
 };

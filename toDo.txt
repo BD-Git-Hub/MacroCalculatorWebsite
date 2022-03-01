@@ -5,11 +5,14 @@
 
 
 
-https://itnext.io/3-ways-to-implement-responsive-design-in-your-react-app-bcb6ee7eb424
 
-//styling the website
 
-//web responsiveness 
+
+
+//responsive display for each section correctly
+
+//add more space for each item added with wdith and height and make sure the items dont over lap the other items so give the other items 
+//more space to move down with width, height.
 
 
 
