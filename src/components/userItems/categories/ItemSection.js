@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState, useRef } from "react";
 import { StyledCategoryItemInput} from '../UserItemsElements'
 
-const BreakfastItemSection = (props) => {
+const ItemSection = (props) => {
   const prevInput = props.value;
   const id = props.id;
   const inputAdjusted = props.inputAdjusted;
@@ -51,4 +51,4 @@ const BreakfastItemSection = (props) => {
   );
 };
 
-export default BreakfastItemSection;
+export default ItemSection;

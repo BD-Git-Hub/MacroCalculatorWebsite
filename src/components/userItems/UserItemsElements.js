@@ -14,8 +14,6 @@ export const BreakfastDiv = styled.div`
 `;
 
 export const LunchDiv = styled.div`
-  background-color: lightblue;
-  height: 20rem;
   width: 20rem;
   margin: 2.5rem 1rem 2.5rem 1rem;
   display: inline-block;
@@ -23,8 +21,6 @@ export const LunchDiv = styled.div`
 `;
 
 export const DinnerDiv = styled.div`
-  background-color: lightblue;
-  height: 20rem;
   width: 20rem;
   margin: 2.5rem 1rem 2.5rem 1rem;
   display: inline-block;
@@ -32,8 +28,6 @@ export const DinnerDiv = styled.div`
 `;
 
 export const SnacksDiv = styled.div`
-  background-color: lightblue;
-  height: 20rem;
   width: 20rem;
   margin: 2.5rem 1rem 2.5rem 1rem;
   display: inline-block;

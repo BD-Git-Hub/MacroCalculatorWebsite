@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import Breakfast from "./categories/BreakfastItemSection";
+import Breakfast from "./categories/Breakfast";
 import Lunch from "./categories/Lunch";
 import Dinner from "./categories/Dinner";
 import Snacks from "./categories/Snacks";
@@ -84,6 +84,8 @@ const UserItems = (props) => {
             }
             return holder;
           })}
+          onRemove={onRemove}
+          inputAdjusted={inputAdjusted}
         />
       </DinnerDiv>
       <SnacksDiv>
@@ -96,6 +98,8 @@ const UserItems = (props) => {
             }
             return holder;
           })}
+          onRemove={onRemove}
+          inputAdjusted={inputAdjusted}
         />
       </SnacksDiv>
     </StyledDiv>

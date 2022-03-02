@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import BreakfastItemSection from "./BreakfastItem";
+import ItemSection from "./ItemSection";
 
 import { StyledCategoryP, StyledCategoryDiv, StyledCategoryDeleteBtn } from "../UserItemsElements";
 
@@ -24,7 +24,7 @@ const Breakfast = (props) => {
         <StyledCategoryDiv>
           <StyledCategoryP>
             Title:
-            <BreakfastItemSection
+            <ItemSection
               value={macroData[0]}
               inputAdjusted={inputAdjusted}
               id={macroData[5]}
@@ -34,7 +34,7 @@ const Breakfast = (props) => {
 
           <StyledCategoryP>
             Carbohydrates:
-            <BreakfastItemSection
+            <ItemSection
               value={macroData[1]}
               inputAdjusted={inputAdjusted}
               id={macroData[5]}
@@ -43,7 +43,7 @@ const Breakfast = (props) => {
           </StyledCategoryP>
           <StyledCategoryP>
             Proteins:
-            <BreakfastItemSection
+            <ItemSection
               value={macroData[2]}
               inputAdjusted={inputAdjusted}
               id={macroData[5]}
@@ -52,7 +52,7 @@ const Breakfast = (props) => {
           </StyledCategoryP>
           <StyledCategoryP>
             Fats:
-            <BreakfastItemSection
+            <ItemSection
               value={macroData[3]}
               inputAdjusted={inputAdjusted}
               id={macroData[5]}
