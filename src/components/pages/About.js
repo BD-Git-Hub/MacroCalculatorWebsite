@@ -1,12 +1,13 @@
 
-import { StyledDivFlex} from './PagesElements'
+import { StyledDiv, StyledAboutH1, StyledAboutP} from './PagesElements'
 
 
 const About = () => {
   return (
-    <StyledDivFlex>
-      <h1>Information about the creator</h1>
-    </StyledDivFlex>
+    <StyledDiv>
+      <StyledAboutH1>Bovin De Souza</StyledAboutH1>
+      <StyledAboutP>created for users which want to track their meals when it comes to their carbohydrates, proteins, fats.</StyledAboutP>
+    </StyledDiv>
   );
 };
 

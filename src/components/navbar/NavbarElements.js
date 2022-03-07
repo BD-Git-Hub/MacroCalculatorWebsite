@@ -114,9 +114,7 @@ export const StyledPropsbutton = styled.button`
 
   border-radius: 0.1rem;
 
-  #808080 //grey
-#00ADB5 //blue
-#222831 //darkgrey
+
 
 
 `;

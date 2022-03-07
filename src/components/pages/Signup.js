@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { StyledDivFlex } from "./PagesElements";
+import { StyledSignUpDiv, StyledAboutH1, StyledSignUpLabel, StyledSignUpInput, StyledSignUpButton, StyledSignUpContentDiv, StyledAboutP} from './PagesElements'
 
 
 
@@ -59,19 +59,22 @@ const SignUp = () => {
   };
 
   return (
-    <StyledDivFlex>
-      <h1>Sign up Page</h1>
+    <StyledSignUpDiv>
+      <StyledSignUpContentDiv>
+
+      <StyledAboutH1>Sign up Page</StyledAboutH1>
       <form onSubmit={submitHandler}>
-        <label>email: </label>
-        <input type="text" ref={emailRef}></input>
+        <StyledSignUpLabel>Email: </StyledSignUpLabel>
+        <StyledSignUpInput type="text" ref={emailRef}></StyledSignUpInput>
 
-        <label>password: </label>
-        <input type="password" ref={passwordRef}></input>
+        <StyledSignUpLabel>Password: </StyledSignUpLabel>
+        <StyledSignUpInput type="password" ref={passwordRef}></StyledSignUpInput>
 
-        {!isLoading && <button type="submit">Create Account</button>}
-        {isLoading && <p>Loading...</p>}
+        {!isLoading && <StyledSignUpButton type="submit">Create Account</StyledSignUpButton>}
+        {isLoading && <StyledAboutP>Loading...</StyledAboutP>}
       </form>
-    </StyledDivFlex>
+      </StyledSignUpContentDiv>
+    </StyledSignUpDiv>
   );
 };
 

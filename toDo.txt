@@ -5,22 +5,14 @@
 
 
 
-
-
-
-
-//responsive display for each section correctly
-
-//add more space for each item added with wdith and height and make sure the items dont over lap the other items so give the other items 
-//more space to move down with width, height.
-
-
+// fix responsiveness for sign up page
+// fix css background for about, sign up
+// fix success message for creating an account for sign up
+//Fix nav burger bars 
 
 //secondary animations
-
 //web accessibility. 
 
-//load up data for each user.
 
 
 

@@ -3,7 +3,6 @@ import { media } from "../MediaQuery";
 
 export const StyledDiv = styled.div`
   background-color: #222831;
-
   display: block;
   text-align: center;
 `;
@@ -48,29 +47,25 @@ export const StyledSubmitButton = styled.input.attrs({
 })`
   padding: 0.9rem 1rem 0.9rem 1rem;
   margin-left: 1.5rem;
-  
+
   color: white;
   background-color: #393e46;
   margin-top: 3rem;
 
-
   &:hover {
     color: #00adb5;
   }
-  
 
   ${media.largeDesktop} {
     font-size: 1.2rem;
   }
 
-  
   ${media.desktop} {
     width: 42%;
     display: block;
     margin-left: auto;
     margin-right: auto;
     font-size: 2rem;
-
   }
 
   ${media.tablet} {
@@ -80,7 +75,6 @@ export const StyledSubmitButton = styled.input.attrs({
     margin-left: auto;
     margin-right: auto;
     width: 42%;
-
   }
 
   ${media.largePhone} {
@@ -93,23 +87,18 @@ export const StyledSubmitButton = styled.input.attrs({
   }
 `;
 
-export const StyledTodoDiv = styled.div`
- 
-
-`;
+export const StyledTodoDiv = styled.div``;
 
 export const StyledLabel = styled.label`
   color: #eeeeee;
   text-transform: uppercase;
   margin-left: 0.4rem;
   margin-right: 0.4rem;
-  
 
   ${media.desktop} {
     display: block;
     font-size: 2rem;
     margin: 1.2rem;
-
   }
 
   ${media.tablet} {
@@ -149,10 +138,71 @@ export const StyledInput = styled.input`
   
 `;
 
-export const StyledDivFlex = styled.div`
-        display: 'flex',
-        justifyContent: 'Right',
-        alignItems: 'Right',
-        height: '100vh'
+
+
+export const StyledAboutH1 = styled.h1`
+
+  color: #EEEEEE;
+`;
+
+export const StyledAboutP = styled.p`
+
+color: #EEEEEE;
+font-size: 1.5rem;
 
 `;
+
+export const StyledSignUpDiv = styled.div`
+
+
+  
+`;
+
+export const StyledSignUpContentDiv = styled.div`
+background-color: #222831;
+width: 100%;
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+
+
+`;
+
+export const StyledSignUpLabel = styled.label`
+  color: #eeeeee;
+  margin: 0.2rem;
+  padding: 0.5rem;
+  display: block;
+  font-size: 1.5rem;
+
+`;
+
+export const StyledSignUpInput = styled.input`
+  border: 0.1rem solid grey;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1.6rem;
+  width: 15rem;
+  
+  &:focus {
+    box-shadow 0 0 10px #00ADB5;
+  }
+`;
+
+export const StyledSignUpButton = styled.button`
+  color: #eeeeee;
+  background: #393e46;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  margin: 1rem;
+  cursor: pointer;
+  
+  &:hover {
+    color: #00adb5;
+  }
+
+`;
+
+
+
