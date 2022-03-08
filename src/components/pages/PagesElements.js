@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { media } from "../MediaQuery";
 
+
 export const StyledDiv = styled.div`
-  background-color: #222831;
+  
   display: block;
   text-align: center;
 `;
@@ -138,33 +139,46 @@ export const StyledInput = styled.input`
   
 `;
 
-
-
 export const StyledAboutH1 = styled.h1`
+  color: #eeeeee;
 
-  color: #EEEEEE;
+  ${media.largeDesktop} {
+    font-size: 3em;
+
+  }
+
+  ${media.desktop} {
+    font-size: 2.7em;
+
+  }
+
+  ${media.tablet} {
+    font-size: 2.5rem;
+
+    
+  }
+
+  ${media.largePhone} {
+    font-size: 2rem;
+  }
 `;
 
 export const StyledAboutP = styled.p`
-
-color: #EEEEEE;
-font-size: 1.5rem;
-
+  color: #eeeeee;
+  font-size: 1.5rem;
 `;
 
 export const StyledSignUpDiv = styled.div`
 
 
-  
+
 `;
 
 export const StyledSignUpContentDiv = styled.div`
-background-color: #222831;
-width: 100%;
-margin-left: auto;
-margin-right: auto;
-text-align: center;
-
+  
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 
 `;
 
@@ -174,7 +188,6 @@ export const StyledSignUpLabel = styled.label`
   padding: 0.5rem;
   display: block;
   font-size: 1.5rem;
-
 `;
 
 export const StyledSignUpInput = styled.input`
@@ -197,12 +210,8 @@ export const StyledSignUpButton = styled.button`
   padding: 0.5rem;
   margin: 1rem;
   cursor: pointer;
-  
+
   &:hover {
     color: #00adb5;
   }
-
 `;
-
-
-

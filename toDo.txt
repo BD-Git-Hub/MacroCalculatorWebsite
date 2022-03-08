@@ -5,10 +5,12 @@
 
 
 
-// fix responsiveness for sign up page
-// fix css background for about, sign up
-// fix success message for creating an account for sign up
+
+//fix success message for creating an account for sign up needs to be displayed to user.
 //Fix nav burger bars 
+//Fix change Password page needs to be resolved.
+
+
 
 //secondary animations
 //web accessibility. 

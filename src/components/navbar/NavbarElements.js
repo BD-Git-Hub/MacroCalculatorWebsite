@@ -9,9 +9,10 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   padding: 0.2rem calc((100vw - 1000px) / 2);
+  
 
   border-bottom: 0.1rem solid
-    ${(props) => (props.borderDisplay ? "#808080;" : "#222831;")};
+    ${(props) => (props.borderDisplay ? "#00ADB5;": "#808080;")};
 
   z-index: 12;
   /* Third Nav */
