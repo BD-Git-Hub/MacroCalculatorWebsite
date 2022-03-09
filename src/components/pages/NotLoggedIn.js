@@ -1,8 +1,9 @@
 import React from 'react'
+import { StyledCenterContentDiv, StyledP} from './PagesElements'
 
 const NotLoggedIn = () => {
   return (
-    <div><p>Please Log In or sign up at the sign up page.</p></div>
+    <StyledCenterContentDiv><StyledP>Please Log In or sign up at the sign up page.</StyledP></StyledCenterContentDiv>
   )
 }
 

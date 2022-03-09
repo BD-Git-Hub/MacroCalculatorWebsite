@@ -1,12 +1,12 @@
 
-import { StyledDiv, StyledAboutH1, StyledAboutP} from './PagesElements'
+import { StyledDiv, StyledSizedH1, StyledP} from './PagesElements'
 
 
 const About = () => {
   return (
     <StyledDiv>
-      <StyledAboutH1>Bovin De Souza</StyledAboutH1>
-      <StyledAboutP>created for users which want to track their meals when it comes to their carbohydrates, proteins, fats.</StyledAboutP>
+      <StyledSizedH1>Bovin De Souza</StyledSizedH1>
+      <StyledP>created for users which want to track their meals when it comes to their carbohydrates, proteins, fats.</StyledP>
     </StyledDiv>
   );
 };

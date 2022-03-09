@@ -1,6 +1,7 @@
 import { useState, useRef, useContext } from "react";
 import { authContext } from "../context/AuthContext";
 import { useHistory } from "react-router";
+import { StyledCenterContentDiv, StyledSizedH1, StyledChangePasswordLabel, StyledChangePasswordInput, StyledChangePasswwordSubmitButton, StyledP} from './PagesElements'
 
 const ChangePassword = () => {
   const history = useHistory();
@@ -32,22 +33,22 @@ const ChangePassword = () => {
     ).then((response) => {
       //always success
       SetisLoading(false);
-      history.replace("/");
+      // history.replace("/");
     });
   };
 
   return (
-    <div>
-      <h1>Change Password</h1>
+    <StyledCenterContentDiv>
+      <StyledSizedH1>Change Password</StyledSizedH1>
       <form onSubmit={SubmitHandler}>
-        <label>password: </label>
-        <input type="password" minLength="7" ref={passwordRef}></input>
-        <button type="submit">Submit</button>
+        <StyledChangePasswordLabel>password: </StyledChangePasswordLabel>
+        <StyledChangePasswordInput type="password" minLength="7" ref={passwordRef}></StyledChangePasswordInput>
+        <StyledChangePasswwordSubmitButton type="submit">Submit</StyledChangePasswwordSubmitButton>
       </form>
 
-      {isLoading && <p>Submitting...</p>}
-      {!isLoading && <p>password change successful!</p>}
-    </div>
+      {isLoading && <StyledP>Submitting...</StyledP>}
+      {!isLoading && <StyledP>password change successful!</StyledP>}
+    </StyledCenterContentDiv>
   );
 };
 

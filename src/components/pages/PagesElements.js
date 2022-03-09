@@ -139,7 +139,7 @@ export const StyledInput = styled.input`
   
 `;
 
-export const StyledAboutH1 = styled.h1`
+export const StyledSizedH1 = styled.h1`
   color: #eeeeee;
 
   ${media.largeDesktop} {
@@ -163,18 +163,22 @@ export const StyledAboutH1 = styled.h1`
   }
 `;
 
-export const StyledAboutP = styled.p`
+export const StyledP = styled.p`
   color: #eeeeee;
   font-size: 1.5rem;
 `;
 
+export const StyledAboutSpan = styled.span`
+  color: #00ADB5;
+  font-size: 1.5rem;
+  display: inline;
+`;
+
 export const StyledSignUpDiv = styled.div`
-
-
 
 `;
 
-export const StyledSignUpContentDiv = styled.div`
+export const StyledCenterContentDiv = styled.div`
   
   margin-left: auto;
   margin-right: auto;
@@ -203,7 +207,39 @@ export const StyledSignUpInput = styled.input`
   }
 `;
 
-export const StyledSignUpButton = styled.button`
+export const StyledSignUpSubmitButton = styled.button`
+  color: #eeeeee;
+  background: #393e46;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  margin: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    color: #00adb5;
+  }
+`;
+
+export const StyledChangePasswordLabel = styled.label`
+  color: #eeeeee;
+  margin: 0.2rem;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+`;
+
+export const StyledChangePasswordInput = styled.input`
+  border: 0.1rem solid grey;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1.6rem;
+  width: 15rem;
+  
+  &:focus {
+    box-shadow 0 0 10px #00ADB5;
+  }
+`;
+
+export const StyledChangePasswwordSubmitButton = styled.button`
   color: #eeeeee;
   background: #393e46;
   border-radius: 1rem;

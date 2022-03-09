@@ -4,11 +4,13 @@
 
 
 
+//add responsive layout to macros when not logged in.
 
+//fix password change message always being displayed.
+//fix clear password input field when password change succesful. 
+//fix changePassword page always displaces after log out.
 
-//fix success message for creating an account for sign up needs to be displayed to user.
 //Fix nav burger bars 
-//Fix change Password page needs to be resolved.
 
 
 

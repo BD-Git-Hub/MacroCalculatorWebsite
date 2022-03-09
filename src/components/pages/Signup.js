@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { StyledSignUpDiv, StyledAboutH1, StyledSignUpLabel, StyledSignUpInput, StyledSignUpButton, StyledSignUpContentDiv, StyledAboutP} from './PagesElements'
+import { StyledSignUpDiv, StyledSizedH1, StyledSignUpLabel, StyledSignUpInput, StyledSignUpSubmitButton, StyledCenterContentDiv, StyledP, StyledAboutSpan} from './PagesElements'
 
 
 
@@ -8,9 +8,15 @@ const SignUp = () => {
   const passwordRef = useRef();
 
   const [isLoading, setIsloading] = useState(false);
+  const [accCreated, setAccCreated] = useState();
+  const [submitted, setSubmitted] = useState();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [emailInput, setEmailInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
 
   const submitHandler = (e) => {
     e.preventDefault();
+    
 
     const enteredEmail = emailRef.current.value;
     const enteredPassword = passwordRef.current.value;
@@ -36,10 +42,21 @@ const SignUp = () => {
     )
       .then((response) => {
         if (response.ok) {
+          setAccCreated(true);
+          setIsloading(false);
+
           return response.json();
+
         } else {
           return response.json().then((data) => {
+
+        setIsloading(false);
+        setSubmitted(true);
+        setAccCreated(false);
+
+
             let errorMessage = "Authentication failed!";
+            
 
             if (data && data.error && data.error.message) {
               errorMessage = data.error.message;
@@ -50,30 +67,43 @@ const SignUp = () => {
         }
       })
       .then((data) => {
-        console.log(data);
-        setIsloading(false);
+        
+        
       })
       .catch((err) => {
-        alert(err.message);
+        console.log(err.message);
+        setErrorMessage(err.message);
+
+
       });
+
+      setEmailInput('')
+      setPasswordInput('')
   };
 
   return (
     <StyledSignUpDiv>
-      <StyledSignUpContentDiv>
+      <StyledCenterContentDiv>
 
-      <StyledAboutH1>Sign up Page</StyledAboutH1>
+      <StyledSizedH1>Sign up Page</StyledSizedH1>
       <form onSubmit={submitHandler}>
         <StyledSignUpLabel>Email: </StyledSignUpLabel>
-        <StyledSignUpInput type="text" ref={emailRef}></StyledSignUpInput>
+        <StyledSignUpInput type="text" ref={emailRef} value={emailInput} onChange={(e) => setEmailInput(e.target.value)}></StyledSignUpInput>
 
         <StyledSignUpLabel>Password: </StyledSignUpLabel>
-        <StyledSignUpInput type="password" ref={passwordRef}></StyledSignUpInput>
+        <StyledSignUpInput type="password" ref={passwordRef} value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)}></StyledSignUpInput>
 
-        {!isLoading && <StyledSignUpButton type="submit">Create Account</StyledSignUpButton>}
-        {isLoading && <StyledAboutP>Loading...</StyledAboutP>}
+        {!isLoading && <StyledSignUpSubmitButton type="submit">Create Account</StyledSignUpSubmitButton>}
+        {isLoading && <StyledP>Loading...</StyledP>}
+        {accCreated  && <StyledP>Sign up successful, <StyledAboutSpan>please log in.</StyledAboutSpan></StyledP>}
+        {submitted && !accCreated && 
+        <StyledP>{errorMessage} - Sign up failed, please try again.</StyledP>
+        }
+        
+
+
       </form>
-      </StyledSignUpContentDiv>
+      </StyledCenterContentDiv>
     </StyledSignUpDiv>
   );
 };
