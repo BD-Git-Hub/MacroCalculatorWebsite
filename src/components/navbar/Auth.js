@@ -6,6 +6,7 @@ import { StyledPropsbutton, StyledLabel, StyledUserInput, StyledPasswordInput, S
 
 
 
+
 const Auth = () => {
   const authCtx = useContext(authContext);
 
@@ -108,6 +109,8 @@ const Auth = () => {
         Sign In
       </StyledPropsbutton>
     </StyledForm>
+
+    
   );
 };
 

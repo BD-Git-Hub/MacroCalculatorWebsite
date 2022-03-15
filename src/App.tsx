@@ -2,12 +2,13 @@ import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router";
 import { authContext } from "./components/context/AuthContext";
 import GlobalStyle from "./components/GlobalStyles";
-import Navbar from "./components/navbar";
+import NavigationBar from "./components/navbar";
 import Main from "./components/pages";
 import About from "./components/pages/About";
 import ChangePassword from "./components/pages/ChangePassword";
 import NotLoggedIn from "./components/pages/NotLoggedIn";
 import SignUp from "./components/pages/Signup";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
@@ -16,7 +17,7 @@ function App() {
   return (
     <React.Fragment>
       <GlobalStyle/>
-      <Navbar />
+      <NavigationBar />
       <Switch>
         <Route path="/about" exact>
           <About />
