@@ -1,0 +1,8 @@
+styled components being generalised so that each react component for that section can reuse the styles
+adding props to styled components to save time on DRY concept.
+
+
+
+
+
+

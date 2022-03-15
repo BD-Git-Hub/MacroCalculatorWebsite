@@ -35,7 +35,8 @@ function App() {
         </Route>
 
         <Route path="/changepassword">
-          <ChangePassword />
+          {authCtx.token &&   <ChangePassword />}
+          {!authCtx.token && <NotLoggedIn/>}
         </Route>
 
         <Route path="*">

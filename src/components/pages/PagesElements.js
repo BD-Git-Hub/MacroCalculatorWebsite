@@ -168,6 +168,12 @@ export const StyledP = styled.p`
   font-size: 1.5rem;
 `;
 
+export const StyledBlueP = styled.p`
+  color: #00ADB5;
+  font-size: 1.5rem;
+
+`;
+
 export const StyledAboutSpan = styled.span`
   color: #00ADB5;
   font-size: 1.5rem;
