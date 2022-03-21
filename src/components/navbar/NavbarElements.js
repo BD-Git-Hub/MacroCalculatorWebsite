@@ -9,10 +9,9 @@ export const Navigation = styled.nav`
   display: flex;
   justify-content: space-between;
   padding: 0.2rem calc((100vw - 1000px) / 2);
-  
-
+  z-index: 12;
   border-bottom: 0.1rem solid
-    ${(props) => (props.borderDisplay ? "#00ADB5;": "#808080;")};
+    ${(props) => (props.borderDisplay ? "#00ADB5;" : "#808080;")};
 
   z-index: 12;
   /* Third Nav */
@@ -28,10 +27,54 @@ export const NavLink = styled(Link)`
   padding: 0.5rem;
   margin: 0.2rem;
   border-radius: 1rem;
-
   cursor: pointer;
+  
+
   &.active {
     color: #00adb5;
+  }
+
+
+
+  &:hover {
+    color: #00adb5;
+  }
+
+  
+  ${media.smallPhone} {
+    font-size: 1.5rem;
+  }
+`;
+
+export const NavLinkSignUp = styled(Link)`
+
+  color: #eeeeee;
+  background: #393e46;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  
+
+  &.active {
+    color: #00adb5;
+  }
+
+
+
+  &:hover {
+    color: #00adb5;
+  }
+
+  
+
+  
+  ${media.smallPhone} {
+    width: auto;
+    font-size: 1.5rem;
   }
 `;
 export const Bars = styled(FaBars)`
@@ -94,16 +137,90 @@ export const NavBtnLink = styled(Link)`
   }
 `;
 
+//-----------------------General Navigation Component styles ---//
+
 export const StyledButton = styled.button`
   color: #eeeeee;
   background: #393e46;
   border-radius: 1rem;
   padding: 0.5rem;
   margin: 0.2rem;
-
   cursor: pointer;
+
   &:hover {
     color: #00adb5;
+  }
+`;
+
+export const StyledLabel = styled.label`
+  color: #eeeeee;
+  margin: 0.2rem;
+  padding: 0.5rem;
+
+  // ${!media.desktop} {
+  //   margin-left: auto;
+  //   margin-right: auto;
+  //   font-size: 1.5rem;
+  // }
+
+  ${media.smallPhone} {
+    display: block;
+    font-size: 1.5rem;
+  }
+`;
+
+export const StyledUserInput = styled.input`
+  border: 0.1rem solid ${(props) => (props.focusColor ? "red" : "grey")};
+  width: 25%;
+  &:focus {
+    box-shadow 0 0 10px #00ADB5;
+  }
+
+  // ${!media.desktop} {
+  //   width: 75%;
+  //   margin-left: auto;
+  //   margin-right: auto;
+  // }
+
+  ${media.smallPhone} {
+    width: 50%;
+    height: 3rem;
+  }
+
+ 
+
+`;
+
+export const StyledPasswordInput = styled.input`
+  border: 0.1rem solid ${(props) => (props.focusColor ? "red" : "grey")};
+  width: 25%;
+  &:focus {
+    box-shadow 0 0 10px #00ADB5;
+  }
+
+
+  // ${!media.desktop} {
+  //   width: 75%;
+  //   margin-left: auto;
+  //   margin-right: auto;
+  // }
+
+  ${media.smallPhone} {
+    width: 50%;
+    height: 3rem;
+  }
+
+  
+  
+`;
+
+export const StyledForm = styled.form`
+
+  
+
+  ${media.smallPhone} {
+    text-align: center;
+    
   }
 `;
 
@@ -115,52 +232,18 @@ export const StyledPropsbutton = styled.button`
 
   border-radius: 0.1rem;
 
+  // ${!media.desktop} {
+  //   margin-top: 1rem;
+  //   margin-bottom: 1rem;
+  // }
 
-
-
-`;
-
-export const StyledLabel = styled.label`
-  color: #eeeeee;
-  margin: 0.2rem;
-  padding: 0.5rem;
-`;
-
-export const StyledUserInput = styled.input`
-  border: 0.1rem solid ${(props) => (props.focusColor ? "red" : "grey")};
-  width: 28%;
-  &:focus {
-    box-shadow 0 0 10px #00ADB5;
-  }
-
-  ${!media.desktop} {
-
-    width: 25%;
+  ${media.smallPhone} {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
     
   }
-
-`;
-
-export const StyledPasswordInput = styled.input`
-  border: 0.1rem solid ${(props) => (props.focusColor ? "red" : "grey")};
-  width: 28%;
-  &:focus {
-    box-shadow 0 0 10px #00ADB5;
-  }
-
-
-  ${!media.desktop} {
-
-    width: 25%;
-    
-  }
-  
-  
-
-
-
-`;
-
-export const StyledForm = styled.form`
-  margin: 0 0 0 1rem;
 `;
