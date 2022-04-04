@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { authContext } from "../context/AuthContext";
-import { StyledPropsbutton, StyledLabel, StyledUserInput, StyledPasswordInput, StyledForm } from './NavbarElements'
-
-
-
-
-
+import {
+  StyledPropsbutton,
+  StyledLabel,
+  StyledUserInput,
+  StyledPasswordInput,
+  StyledForm, 
+} from "./NavbarElements";
 
 const Auth = () => {
   const authCtx = useContext(authContext);
@@ -82,34 +83,35 @@ const Auth = () => {
   };
 
   return (
-    <StyledForm onSubmit={signInHandler}>
-      <StyledLabel htmlFor="username">Username</StyledLabel>
-      <StyledUserInput
-        focusColor={emptyUsername}
-        type="text"
-        value={enteredUsername}
-        onChange={(e) => setEnteredUsername(e.target.value)}
-        onBlur={blurValidUserInputHandler}
-      ></StyledUserInput>
-      <StyledLabel htmlFor="password">Password</StyledLabel>
-      <StyledPasswordInput
-        focusColor={emptyPassword}
-        onBlur={blurValidPasswordInputHandler}
-        type="password"
-        value={enteredPassword}
-        onChange={(e) => setEnteredPassword(e.target.value)}
-      ></StyledPasswordInput>
-      <StyledPropsbutton
+   
+      <StyledForm onSubmit={signInHandler}>
+        
+        <StyledLabel htmlFor="username">Username</StyledLabel>
+        <StyledUserInput
+          focusColor={emptyUsername}
+          type="text"
+          value={enteredUsername}
+          onChange={(e) => setEnteredUsername(e.target.value)}
+          onBlur={blurValidUserInputHandler}
+        ></StyledUserInput>
+        <StyledLabel htmlFor="password">Password</StyledLabel>
+        <StyledPasswordInput
+          focusColor={emptyPassword}
+          onBlur={blurValidPasswordInputHandler}
+          type="password"
+          value={enteredPassword}
+          onChange={(e) => setEnteredPassword(e.target.value)}
+        ></StyledPasswordInput>
+        <StyledPropsbutton
+          disabledFontColor={validUserNameAndPassword}
+          type="submit"
+          disabled={!validUserNameAndPassword}
+          onClick={loginHandler}
+        >
+          Sign In
 
-        disabledFontColor={validUserNameAndPassword}
-        type="submit"
-        disabled={!validUserNameAndPassword}
-        onClick={loginHandler}
-      >
-        Sign In
-      </StyledPropsbutton>
-    </StyledForm>
-
+        </StyledPropsbutton>
+      </StyledForm>
     
   );
 };

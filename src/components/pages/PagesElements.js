@@ -15,6 +15,7 @@ font-size: 1rem;
 color: white;
 background-color: #393E46;
 text-align: center;
+border-radius: 0.3rem;
 
 &:focus {
   box-shadow 0 0 10px #00ADB5;
@@ -48,6 +49,7 @@ export const StyledSubmitButton = styled.input.attrs({
 })`
   padding: 0.9rem 1rem 0.9rem 1rem;
   margin-left: 1.5rem;
+  border-radius: 0.3rem;
 
   color: white;
   background-color: #393e46;
@@ -115,6 +117,7 @@ export const StyledInput = styled.input`
   box-sizing: border-box;
   background-color: #393E46;
   color: white;
+  border-radius: 0.3rem;
   
   
   &:focus {
@@ -207,6 +210,7 @@ export const StyledSignUpInput = styled.input`
   margin-right: auto;
   height: 1.6rem;
   width: 15rem;
+  border-radius: 0.3rem;
   
   &:focus {
     box-shadow 0 0 10px #00ADB5;
@@ -239,6 +243,8 @@ export const StyledChangePasswordInput = styled.input`
   margin-right: auto;
   height: 1.6rem;
   width: 15rem;
+  
+  
   
   &:focus {
     box-shadow 0 0 10px #00ADB5;

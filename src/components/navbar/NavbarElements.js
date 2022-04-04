@@ -7,9 +7,6 @@ export const Navigation = styled.nav`
   background: #222831;
   height: 85px;
   display: flex;
-  justify-content: space-between;
-  padding: 0.2rem calc((100vw - 1000px) / 2);
-  z-index: 12;
   border-bottom: 0.1rem solid
     ${(props) => (props.borderDisplay ? "#00ADB5;" : "#808080;")};
 
@@ -22,56 +19,44 @@ export const NavLink = styled(Link)`
   color: #eeeeee;
   background: #393e46;
   display: flex;
-  align-items: center;
   text-decoration: none;
   padding: 0.5rem;
   margin: 0.2rem;
   border-radius: 1rem;
   cursor: pointer;
-  
 
   &.active {
     color: #00adb5;
   }
 
-
-
   &:hover {
     color: #00adb5;
   }
 
-  
   ${media.smallPhone} {
     font-size: 1.5rem;
   }
 `;
 
 export const NavLinkSignUp = styled(Link)`
-
   color: #eeeeee;
   background: #393e46;
   display: flex;
-  align-items: center;
+  
   text-decoration: none;
   padding: 0.5rem;
   margin: 0.2rem;
   border-radius: 1rem;
   cursor: pointer;
-  
 
   &.active {
     color: #00adb5;
   }
 
-
-
   &:hover {
     color: #00adb5;
   }
 
-  
-
-  
   ${media.smallPhone} {
     width: auto;
     font-size: 1.5rem;
@@ -94,7 +79,6 @@ export const Bars = styled(FaBars)`
 
 export const NavMenu = styled.div`
   display: flex;
-  align-items: center;
   margin-right: -24px;
   /* Second Nav */
   /* margin-right: 24px; */
@@ -108,7 +92,6 @@ export const NavMenu = styled.div`
 
 export const NavBtn = styled.nav`
   display: flex;
-  align-items: center;
   margin-right: 24px;
   /* Third Nav */
   /* justify-content: flex-end;
@@ -146,10 +129,19 @@ export const StyledButton = styled.button`
   padding: 0.5rem;
   margin: 0.2rem;
   cursor: pointer;
+  float: right;
+  
+
 
   &:hover {
     color: #00adb5;
   }
+`;
+
+export const StyledLogOutDiv = styled.div`
+
+
+
 `;
 
 export const StyledLabel = styled.label`
@@ -172,9 +164,12 @@ export const StyledLabel = styled.label`
 export const StyledUserInput = styled.input`
   border: 0.1rem solid ${(props) => (props.focusColor ? "red" : "grey")};
   width: 25%;
+  border-radius: 0.3rem;
   &:focus {
     box-shadow 0 0 10px #00ADB5;
   }
+
+  
 
   // ${!media.desktop} {
   //   width: 75%;
@@ -194,6 +189,8 @@ export const StyledUserInput = styled.input`
 export const StyledPasswordInput = styled.input`
   border: 0.1rem solid ${(props) => (props.focusColor ? "red" : "grey")};
   width: 25%;
+  border-radius: 0.3rem;
+
   &:focus {
     box-shadow 0 0 10px #00ADB5;
   }
@@ -214,13 +211,16 @@ export const StyledPasswordInput = styled.input`
   
 `;
 
-export const StyledForm = styled.form`
 
-  
+
+export const StyledForm = styled.form`
+text-align: right;
+
+
+
 
   ${media.smallPhone} {
     text-align: center;
-    
   }
 `;
 
@@ -228,6 +228,7 @@ export const StyledPropsbutton = styled.button`
   margin: 0.2rem;
   background: #393e46;
   color: #808080;
+  border-radius: 0.3rem;
   color: ${(props) => (props.disabledFontColor ? "#00ADB5" : "#808080")};
 
   border-radius: 0.1rem;
@@ -244,6 +245,5 @@ export const StyledPropsbutton = styled.button`
     margin-top: 1rem;
     margin-bottom: 1rem;
     font-size: 1.5rem;
-    
   }
 `;

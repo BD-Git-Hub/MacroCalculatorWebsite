@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { authContext } from "../context/AuthContext";
 
-import { StyledButton } from "./NavbarElements";
+import { StyledButton, StyledLogOutDiv } from "./NavbarElements";
 
 
 
@@ -9,9 +9,9 @@ const Logout = () => {
   const authCtx = useContext(authContext);
 
   return (
-    <div>
+    <StyledLogOutDiv>
       <StyledButton onClick={authCtx.logout}>Log Out</StyledButton>
-    </div>
+    </StyledLogOutDiv>
   );
 };
 

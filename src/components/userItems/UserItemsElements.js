@@ -54,21 +54,29 @@ export const StyledCategoryDiv = styled.div`
 `;
 
 export const StyledCategoryP = styled.p`
+
   color: #eeeeee;
+  
 `;
 
 export const StyledCategoryDeleteBtn = styled.button`
 
-border-radius: 0.1rem;
+border-radius: 0.3rem;
 font-size: 1rem;
 color: #eeeeee;
 background: #222831;
+margin-bottom: 0.3rem;
+
 
 `;
 
 export const StyledCategoryItemInput = styled.input`
-
-border-radius: 0.1rem;
+display: block;
+margin-left: auto;
+margin-right: auto;
+margin-top: 0.1rem;
+border-radius: 0.3rem;
+text-align: center; 
 
 `;
 

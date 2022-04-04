@@ -54,7 +54,7 @@ const NavigationBar = () => {
             <NavLink to="/macros">Macros</NavLink>
           {context}
 
-          {/* <NavBtn>{context}</NavBtn> */}
+         
 
             
           </Nav>
