@@ -1,8 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import ItemSection from "./ItemSection";
 
-import { StyledCategoryP, StyledCategoryDiv, StyledCategoryDeleteBtn } from "../UserItemsElements";
-
+import {
+  StyledCategoryP,
+  StyledCategoryDiv,
+  StyledCategoryDeleteBtn,
+} from "../UserItemsElements";
 const Breakfast = (props) => {
   let onRemove = props.onRemove;
   let macroData = props.data;
@@ -59,7 +62,9 @@ const Breakfast = (props) => {
               categoryInput={"fats"}
             />
           </StyledCategoryP>
-          <StyledCategoryDeleteBtn onClick={onRemove.bind(null, macroData[5])}>DELETE</StyledCategoryDeleteBtn>
+          <StyledCategoryDeleteBtn onClick={onRemove.bind(null, macroData[5])}>
+            DELETE
+          </StyledCategoryDeleteBtn>
         </StyledCategoryDiv>
       </Fragment>
     );

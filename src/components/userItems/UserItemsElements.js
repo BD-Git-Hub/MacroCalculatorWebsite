@@ -47,7 +47,7 @@ export const StyledCategoryDiv = styled.div`
   margin-top: 1rem;
   margin-bottom: 1rem;
   border-radius: 0.5rem;
-
+  
   &:hover {
     border: 0.1rem solid #00adb5;
   }

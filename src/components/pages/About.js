@@ -2,7 +2,12 @@
 import { StyledDiv, StyledSizedH1, StyledP} from './PagesElements'
 
 
+
 const About = () => {
+
+
+  document.title = "About Me Page"
+
   return (
     <StyledDiv>
       <StyledSizedH1>Bovin De Souza</StyledSizedH1>

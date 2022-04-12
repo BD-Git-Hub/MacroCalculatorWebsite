@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import { authContext } from "../context/AuthContext";
 
 import { StyledButton, StyledLogOutDiv } from "./NavbarElements";
@@ -9,9 +9,11 @@ const Logout = () => {
   const authCtx = useContext(authContext);
 
   return (
-    <StyledLogOutDiv>
+    //<StyledLogOutDiv>
+    <Fragment>
       <StyledButton onClick={authCtx.logout}>Log Out</StyledButton>
-    </StyledLogOutDiv>
+      </Fragment>
+    //</StyledLogOutDiv>
   );
 };
 

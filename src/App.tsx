@@ -19,6 +19,7 @@ function App() {
       <GlobalStyle/>
       <NavigationBar />
       <Switch>
+        
         <Route path="/about" exact>
           <About />
         </Route>

@@ -38,6 +38,7 @@ const ItemSection = (props) => {
 
   return (
     <Fragment>
+      
       <StyledCategoryItemInput
         value={!intialShown ? prevInput : input}
         onChange={(e) => {
@@ -46,6 +47,8 @@ const ItemSection = (props) => {
         onBlur={() => {
           updateHandler(prevInput, id, categoryInput);
         }}
+
+        id={categoryInput}
       />
     </Fragment>
   );

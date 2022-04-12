@@ -4,6 +4,8 @@ import { StyledSignUpDiv, StyledSizedH1, StyledSignUpLabel, StyledSignUpInput, S
 
 
 const SignUp = () => {
+  
+  document.title = "Sign up Page"
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -82,15 +84,15 @@ const SignUp = () => {
   };
 
   return (
-    <StyledSignUpDiv>
+    
       <StyledCenterContentDiv>
 
       <StyledSizedH1>Sign up Page</StyledSizedH1>
       <form onSubmit={submitHandler}>
-        <StyledSignUpLabel>Email: </StyledSignUpLabel>
+        <StyledSignUpLabel htmlFor="emailInput">Email: </StyledSignUpLabel>
         <StyledSignUpInput type="text" ref={emailRef} value={emailInput} onChange={(e) => setEmailInput(e.target.value)}></StyledSignUpInput>
 
-        <StyledSignUpLabel>Password: </StyledSignUpLabel>
+        <StyledSignUpLabel htmlFor="passwordInput">Password: </StyledSignUpLabel>
         <StyledSignUpInput type="password" ref={passwordRef} value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)}></StyledSignUpInput>
 
         {!isLoading && <StyledSignUpSubmitButton type="submit">Create Account</StyledSignUpSubmitButton>}
@@ -104,7 +106,7 @@ const SignUp = () => {
 
       </form>
       </StyledCenterContentDiv>
-    </StyledSignUpDiv>
+    
   );
 };
 

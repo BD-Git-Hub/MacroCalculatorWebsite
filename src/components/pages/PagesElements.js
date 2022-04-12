@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import { media } from "../MediaQuery";
 
-
 export const StyledDiv = styled.div`
-  
-  display: block;
   text-align: center;
 `;
 
@@ -147,18 +144,14 @@ export const StyledSizedH1 = styled.h1`
 
   ${media.largeDesktop} {
     font-size: 3em;
-
   }
 
   ${media.desktop} {
     font-size: 2.7em;
-
   }
 
   ${media.tablet} {
     font-size: 2.5rem;
-
-    
   }
 
   ${media.largePhone} {
@@ -172,27 +165,22 @@ export const StyledP = styled.p`
 `;
 
 export const StyledBlueP = styled.p`
-  color: #00ADB5;
+  color: #00adb5;
   font-size: 1.5rem;
-
 `;
 
 export const StyledAboutSpan = styled.span`
-  color: #00ADB5;
+  color: #00adb5;
   font-size: 1.5rem;
   display: inline;
 `;
 
-export const StyledSignUpDiv = styled.div`
 
-`;
 
 export const StyledCenterContentDiv = styled.div`
-  
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-
 `;
 
 export const StyledSignUpLabel = styled.label`

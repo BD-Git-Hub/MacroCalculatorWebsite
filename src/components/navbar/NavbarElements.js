@@ -129,7 +129,7 @@ export const StyledButton = styled.button`
   padding: 0.5rem;
   margin: 0.2rem;
   cursor: pointer;
-  float: right;
+
   
 
 

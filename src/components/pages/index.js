@@ -18,8 +18,9 @@ import {
 } from "./PagesElements";
 
 
-
 const Main = () => {
+  
+  document.title = "Macros Page"
   const authCtx = useContext(authContext);
   let userTokenId = authCtx.token;
   let itemCount = useRef(undefined);
@@ -42,6 +43,7 @@ const Main = () => {
   const [submitted, setSubmitted] = useState(false);
   const [itemRemoved, setItemRemoved] = useState(false);
   const [itemAdjusted, setItemAdjusted] = useState(false);
+  // const [showDiv, setShowDiv] = useState(false);
 
   const addBtnHandler = (e) => {
     e.preventDefault();
@@ -244,60 +246,65 @@ const Main = () => {
     });
   };
 
+  // const toggleBtnHandler = () => {
+  //   if (!showDiv) {
+  //     setShowDiv(true);
+  //   } else {
+  //     setShowDiv(false);
+  //   }
+  // };
+
   return (
     <Fragment>
-      <StyledDiv>
-         
+      {/* <StyledDiv> */}
         <form onSubmit={addBtnHandler}>
-            <StyledLabel htmlFor="category">Category:</StyledLabel>
-            <StyledSelect
-              value={categorySelected}
-              onChange={handleSelectChange}
-            >
-              <option value="breakfast">Breakfast</option>
-              <option value="lunch">Lunch</option>
-              <option value="dinner">Dinner</option>
-              <option value="snack">Snack</option>
-            </StyledSelect>
-            <StyledLabel htmlFor="macroTitle">Title:</StyledLabel>
-            <StyledInput
-              type="text"
-              ref={titleRef}
-              value={titleInput}
-              onChange={(e) => setTitleInput(e.target.value)}
-              name="macroTitle"
-            />
-            <StyledLabel htmlFor="carbohydrateTitle">
-              Carbohydrates:
-            </StyledLabel>
-            <StyledInput
-              type="text"
-              ref={carbRef}
-              value={carbInput}
-              onChange={(e) => setCarbInput(e.target.value)}
-              name="carbohydrateTitle"
-            />
-            <StyledLabel htmlFor="proteinTitle">proteins:</StyledLabel>
-            <StyledInput
-              type="text"
-              ref={proteinRef}
-              value={proteinInput}
-              onChange={(e) => setProteinInput(e.target.value)}
-              name="proteinTitle"
-            />
-            <StyledLabel htmlFor="proteinTitle">Fats:</StyledLabel>
-            <StyledInput
-              type="text"
-              ref={fatsRef}
-              value={fatsInput}
-              onChange={(e) => setFatsInput(e.target.value)}
-              name="proteinTitle"
-            />
+          <StyledLabel htmlFor="category">Category:</StyledLabel>
+          <StyledSelect value={categorySelected} onChange={handleSelectChange}>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="snack">Snack</option>
+          </StyledSelect>
+          <StyledLabel htmlFor="macroTitle">Title:</StyledLabel>
+          <StyledInput
+          id="macroTitle"
+            type="text"
+            ref={titleRef}
+            value={titleInput}
+            onChange={(e) => setTitleInput(e.target.value)}
+            name="macroTitle"
+          />
+          <StyledLabel htmlFor="carbohydrateTitle">Carbohydrates:</StyledLabel>
+          <StyledInput
+            id="carbohydrateTitle"
+            type="text"
+            ref={carbRef}
+            value={carbInput}
+            onChange={(e) => setCarbInput(e.target.value)}
+            name="carbohydrateTitle"
+          />
+          <StyledLabel htmlFor="proteinTitle">proteins:</StyledLabel>
+          <StyledInput
+            id="proteinTitle"
+            type="text"
+            ref={proteinRef}
+            value={proteinInput}
+            onChange={(e) => setProteinInput(e.target.value)}
+            name="proteinTitle"
+          />
+          <StyledLabel htmlFor="fatsTitle">Fats:</StyledLabel>
+          <StyledInput
+            id="fatsTitle"
+            type="text"
+            ref={fatsRef}
+            value={fatsInput}
+            onChange={(e) => setFatsInput(e.target.value)}
+            name="proteinTitle"
+          />
 
-            <StyledSubmitButton />
+          <StyledSubmitButton />
         </form>
-          
-      </StyledDiv>
+      {/* </StyledDiv> */}
       <StyledTodoDiv>
         {!displayData && <p>No Data</p>}
         {displayData && (
@@ -307,8 +314,18 @@ const Main = () => {
             inputAdjusted={inputAdjustedHandler}
           />
         )}
+        {/* <button onClick={toggleBtnHandler}>Toggle</button>
+
+        <Transition in={showDiv} timeout={1000} mountOnEnter unmountOnExit>
+          {state => (
+            <div
+            style={{ backgroundColor: "red", width: 100, height: 100, margin: 'auto', transition: 'opacity 1s ease-out', opacity: state === 'exiting' ? 0 : 1 }}
+          ></div>
+
+          )}
+          
+        </Transition> */}
       </StyledTodoDiv>
-      
     </Fragment>
   );
 };

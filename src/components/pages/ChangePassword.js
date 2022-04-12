@@ -11,6 +11,8 @@ import {
 } from "./PagesElements";
 
 const ChangePassword = () => {
+  
+  document.title = "Change Password Page"
   const authCtx = useContext(authContext);
   const passwordRef = useRef();
   const [isLoading, SetisLoading] = useState(false);
@@ -79,7 +81,7 @@ const ChangePassword = () => {
     <StyledCenterContentDiv>
       <StyledSizedH1>Change Password</StyledSizedH1>
       <form onSubmit={SubmitHandler}>
-        <StyledChangePasswordLabel>password: </StyledChangePasswordLabel>
+        <StyledChangePasswordLabel htmlfor="passwordInput">password: </StyledChangePasswordLabel>
         <StyledChangePasswordInput
           type="password"
           minLength="7"
