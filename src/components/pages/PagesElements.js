@@ -22,6 +22,9 @@ border-radius: 0.3rem;
 ${media.desktop} {
   width: 40%;
   font-size: 1.4rem;
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
@@ -51,6 +54,7 @@ export const StyledSubmitButton = styled.input.attrs({
   color: white;
   background-color: #393e46;
   margin-top: 3rem;
+  border-color: #393E46;
 
   &:hover {
     color: #00adb5;
@@ -94,17 +98,28 @@ export const StyledLabel = styled.label`
   text-transform: uppercase;
   margin-left: 0.4rem;
   margin-right: 0.4rem;
+  
+  
+  
 
   ${media.desktop} {
-    display: block;
+    
     font-size: 2rem;
-    margin: 1.2rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    
+    
   }
 
   ${media.tablet} {
-    display: block;
+    
     font-size: 2rem;
     margin: 1.2rem;
+
+    
+    
   }
 `;
 
@@ -125,6 +140,9 @@ export const StyledInput = styled.input`
 
   ${media.desktop} {
     width: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 
@@ -212,6 +230,7 @@ export const StyledSignUpSubmitButton = styled.button`
   padding: 0.5rem;
   margin: 1rem;
   cursor: pointer;
+  border-color: #393E46;
 
   &:hover {
     color: #00adb5;
@@ -246,6 +265,7 @@ export const StyledChangePasswwordSubmitButton = styled.button`
   padding: 0.5rem;
   margin: 1rem;
   cursor: pointer;
+  border-color: #393E46;
 
   &:hover {
     color: #00adb5;

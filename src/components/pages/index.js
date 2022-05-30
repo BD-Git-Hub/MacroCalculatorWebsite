@@ -45,6 +45,8 @@ const Main = () => {
   const [itemAdjusted, setItemAdjusted] = useState(false);
   // const [showDiv, setShowDiv] = useState(false);
 
+  
+
   const addBtnHandler = (e) => {
     e.preventDefault();
 
@@ -90,6 +92,9 @@ const Main = () => {
       }
     });
 
+    
+
+    
     //clear input field
     setTitleInput("");
     setCarbInput("");
@@ -125,8 +130,11 @@ const Main = () => {
       if (!response.ok) {
         throw new Error("response failed!");
       }
+      
+
       setDisplayData(true);
       setItemAdjusted(true);
+      
     } catch (error) {
       alert(error);
     }
@@ -157,6 +165,7 @@ const Main = () => {
         itemCount.current = data.length;
 
         setDisplayData(true);
+
       }
     } catch (error) {
       alert(error);

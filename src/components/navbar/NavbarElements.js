@@ -129,6 +129,7 @@ export const StyledButton = styled.button`
   padding: 0.5rem;
   margin: 0.2rem;
   cursor: pointer;
+  border-color: #393E46;
 
   
 
@@ -228,10 +229,12 @@ export const StyledPropsbutton = styled.button`
   margin: 0.2rem;
   background: #393e46;
   color: #808080;
-  border-radius: 0.3rem;
+  border-color: #393E46;
+  
+  
   color: ${(props) => (props.disabledFontColor ? "#00ADB5" : "#808080")};
 
-  border-radius: 0.1rem;
+  border-radius: 0.5rem;
 
   // ${!media.desktop} {
   //   margin-top: 1rem;

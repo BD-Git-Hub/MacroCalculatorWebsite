@@ -1,9 +1,10 @@
 
+creat account btn, sign in btn, submit btn needs to be grey or transaparent.
 
 
 
 
-colours.
+
 
 
 #393E46 //transaparent Grey
