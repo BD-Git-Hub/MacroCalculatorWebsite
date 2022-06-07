@@ -9,8 +9,6 @@ import {
   StyledP,
   StyledBlueP,
 } from "./PagesElements";
-import 'dotenv/config';
-
 
 const ChangePassword = () => {
   
@@ -31,10 +29,8 @@ const ChangePassword = () => {
 
     //add validation for password instead of minlength in input type.
 
-
-    
     fetch(
-      "https://bovindesouzao.korconnect.io/MacroCalculatorAPI/",
+      "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDKx4s2Yj2na069sDc3FOtDc7NYnHq7-XU",
       {
         method: "POST",
         body: JSON.stringify({
@@ -113,3 +109,28 @@ const ChangePassword = () => {
 
 export default ChangePassword;
 
+// fetch(
+//   "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDKx4s2Yj2na069sDc3FOtDc7NYnHq7-XU",
+//   {
+//     method: "POST",
+//     body: JSON.stringify({
+//       idToken: authCtx.token,
+//       password: inputPassword,
+//       returnSecureToken: false,
+//     }),
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   }
+// )
+//   .then((response) => {
+//     if (response.ok) {
+//       console.log(response);
+//       SetisLoading(false);
+//       setSubmitted(true);
+//     } else {
+//       setSubmitted(false);
+
+//     }
+//   })
+//   .catch((err) => {});
