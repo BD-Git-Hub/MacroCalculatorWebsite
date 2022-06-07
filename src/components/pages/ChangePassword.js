@@ -10,6 +10,8 @@ import {
   StyledBlueP,
 } from "./PagesElements";
 
+
+
 const ChangePassword = () => {
   
   document.title = "Change Password Page"
