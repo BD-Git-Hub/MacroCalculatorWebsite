@@ -268,6 +268,7 @@ const Main = () => {
       {/* <StyledDiv> */}
         <form onSubmit={addBtnHandler}>
           <StyledLabel htmlFor="category">Category:</StyledLabel>
+          
           <StyledSelect value={categorySelected} onChange={handleSelectChange}>
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
@@ -283,7 +284,7 @@ const Main = () => {
             onChange={(e) => setTitleInput(e.target.value)}
             name="macroTitle"
           />
-          <StyledLabel htmlFor="carbohydrateTitle">Carbohydrates:</StyledLabel>
+          <StyledLabel htmlFor="carbohydrateTitle" >Carbohydrates:</StyledLabel>
           <StyledInput
             id="carbohydrateTitle"
             type="text"
