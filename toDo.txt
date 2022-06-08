@@ -1,6 +1,4 @@
 
-creat account btn, sign in btn, submit btn needs to be grey or transaparent.
-
 
 
 

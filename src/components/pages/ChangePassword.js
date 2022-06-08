@@ -31,8 +31,10 @@ const ChangePassword = () => {
 
     //add validation for password instead of minlength in input type.
 
+
+
     fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDKx4s2Yj2na069sDc3FOtDc7NYnHq7-XU",
+      `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${process.env.REACT_APP_KEY}`,
       {
         method: "POST",
         body: JSON.stringify({
